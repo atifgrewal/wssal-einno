@@ -27,7 +27,7 @@ class VendorApiController extends Controller
 
     public function store(StoreVendorRequest $request)
     {
-        return "sdfsdf";
+       
         $request->validate([
             'name' => 'required',
             'email' => 'required|unique:users,email',
