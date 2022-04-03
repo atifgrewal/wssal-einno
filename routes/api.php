@@ -31,3 +31,6 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::post('drivers/media', 'DriverApiController@storeMedia')->name('drivers.storeMedia');
     Route::apiResource('drivers', 'DriverApiController');
 });
+Route::post('register', 'Api\\AuthController@register');
+Route::post('login', 'Api\\AuthController@login');
+// Route/::
