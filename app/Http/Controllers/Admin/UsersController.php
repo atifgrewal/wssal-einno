@@ -46,7 +46,6 @@ class UsersController extends Controller
         if ($media = $request->input('ck-media', false)) {
             Media::whereIn('id', $media)->update(['model_id' => $user->id]);
         }
-
         return redirect()->route('admin.users.index');
     }
 

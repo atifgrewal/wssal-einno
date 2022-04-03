@@ -151,10 +151,6 @@ return [
             'image_helper'          => ' ',
             'category'              => 'Category',
             'category_helper'       => ' ',
-            'variation'             => 'Variation',
-            'variation_helper'      => ' ',
-            'unit'                  => 'Unit',
-            'unit_helper'           => ' ',
         ],
     ],
     'contentManagement' => [

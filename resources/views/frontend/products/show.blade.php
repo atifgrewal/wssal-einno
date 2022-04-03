@@ -62,22 +62,6 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.product.fields.variation') }}
-                                    </th>
-                                    <td>
-                                        {{ $product->variation->name ?? '' }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        {{ trans('cruds.product.fields.unit') }}
-                                    </th>
-                                    <td>
-                                        {{ $product->unit->name ?? '' }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
                                         {{ trans('cruds.product.fields.featured') }}
                                     </th>
                                     <td>

@@ -38,12 +38,6 @@
                             {{ trans('cruds.product.fields.tag') }}
                         </th>
                         <th>
-                            {{ trans('cruds.product.fields.variation') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.product.fields.unit') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.product.fields.featured') }}
                         </th>
                         <th>
@@ -97,12 +91,6 @@
                                 @foreach($product->tags as $key => $item)
                                     <span class="badge badge-info">{{ $item->name }}</span>
                                 @endforeach
-                            </td>
-                            <td>
-                                {{ $product->variation->name ?? '' }}
-                            </td>
-                            <td>
-                                {{ $product->unit->name ?? '' }}
                             </td>
                             <td>
                                 {{ App\Models\Product::FEATURED_SELECT[$product->featured] ?? '' }}

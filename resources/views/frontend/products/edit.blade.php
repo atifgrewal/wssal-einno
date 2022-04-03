@@ -66,34 +66,6 @@
                             <span class="help-block">{{ trans('cruds.product.fields.tag_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label class="required" for="variation_id">{{ trans('cruds.product.fields.variation') }}</label>
-                            <select class="form-control select2" name="variation_id" id="variation_id" required>
-                                @foreach($variations as $id => $entry)
-                                    <option value="{{ $id }}" {{ (old('variation_id') ? old('variation_id') : $product->variation->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('variation'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('variation') }}
-                                </div>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.product.fields.variation_helper') }}</span>
-                        </div>
-                        <div class="form-group">
-                            <label class="required" for="unit_id">{{ trans('cruds.product.fields.unit') }}</label>
-                            <select class="form-control select2" name="unit_id" id="unit_id" required>
-                                @foreach($units as $id => $entry)
-                                    <option value="{{ $id }}" {{ (old('unit_id') ? old('unit_id') : $product->unit->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('unit'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('unit') }}
-                                </div>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.product.fields.unit_helper') }}</span>
-                        </div>
-                        <div class="form-group">
                             <label>{{ trans('cruds.product.fields.featured') }}</label>
                             <select class="form-control" name="featured" id="featured">
                                 <option value disabled {{ old('featured', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
