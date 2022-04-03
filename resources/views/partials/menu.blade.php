@@ -63,7 +63,7 @@
             </li>
         @endcan
         @can('product_management_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/product-categories*") ? "c-show" : "" }} {{ request()->is("admin/sub-cats*") ? "c-show" : "" }} {{ request()->is("admin/product-tags*") ? "c-show" : "" }} {{ request()->is("admin/products*") ? "c-show" : "" }}">
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/product-categories*") ? "c-show" : "" }} {{ request()->is("admin/sub-cats*") ? "c-show" : "" }} {{ request()->is("admin/product-tags*") ? "c-show" : "" }} {{ request()->is("admin/products*") ? "c-show" : "" }} {{ request()->is("admin/units*") ? "c-show" : "" }} {{ request()->is("admin/variations*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw fas fa-shopping-cart c-sidebar-nav-icon">
 
@@ -108,6 +108,26 @@
 
                                 </i>
                                 {{ trans('cruds.product.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('unit_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.units.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/units") || request()->is("admin/units/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-chess-bishop c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.unit.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('variation_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.variations.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/variations") || request()->is("admin/variations/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-bullseye c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.variation.title') }}
                             </a>
                         </li>
                     @endcan

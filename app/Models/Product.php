@@ -37,14 +37,16 @@ class Product extends Model implements HasMedia
     protected $fillable = [
         'name',
         'description',
+        'category_id',
         'sub_category_id',
+        'variation_id',
         'featured',
         'regular_price',
         'sale_price',
         'sku',
         'qty',
         'vendor',
-        'category_id',
+        'unit_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -54,6 +56,11 @@ class Product extends Model implements HasMedia
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(ProductCategory::class, 'category_id');
     }
 
     public function sub_category()
@@ -66,6 +73,11 @@ class Product extends Model implements HasMedia
         return $this->belongsToMany(ProductTag::class);
     }
 
+    public function variation()
+    {
+        return $this->belongsTo(Variation::class, 'variation_id');
+    }
+
     public function getFetauredImageAttribute()
     {
         return $this->getMedia('fetaured_image')->last();
@@ -76,9 +88,9 @@ class Product extends Model implements HasMedia
         return $this->getMedia('image');
     }
 
-    public function category()
+    public function unit()
     {
-        return $this->belongsTo(ProductCategory::class, 'category_id');
+        return $this->belongsTo(Unit::class, 'unit_id');
     }
 
     protected function serializeDate(DateTimeInterface $date)

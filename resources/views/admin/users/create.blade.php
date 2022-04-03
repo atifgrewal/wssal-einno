@@ -81,7 +81,6 @@
                 <span class="help-block">{{ trans('cruds.user.fields.phone_no_helper') }}</span>
             </div>
             <div class="form-group">
-
                 <label class="required" for="address">{{ trans('cruds.user.fields.address') }}</label>
                 <input class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" type="text" name="address" id="address" value="{{ old('address', '') }}" required>
                 @if($errors->has('address'))
@@ -171,4 +170,6 @@
      }
 }
 </script>
+
+@endsection
 

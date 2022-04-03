@@ -12,15 +12,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+// <<<<<<< HEAD
 
 use Laravel\Sanctum\HasApiTokens;
-class User extends Authenticatable
 
+// =======
+use Illuminate\Support\Str;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+// >>>>>>> master
+
+// class User extends Authenticatable implements HasMedia
+class User extends Authenticatable
 {
     use SoftDeletes;
     use Notifiable;
     use HasFactory;
-    use HasApiTokens;
+use HasApiTokens;
     public $table = 'users';
 
     protected $hidden = [
