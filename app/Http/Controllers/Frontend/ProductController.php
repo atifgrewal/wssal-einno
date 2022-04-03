@@ -24,7 +24,7 @@ class ProductController extends Controller
     {
         abort_if(Gate::denies('product_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $products = Product::with(['category', 'sub_category', 'tags', 'media'])->get();
+        $products = Product::with(['sub_category', 'tags', 'category', 'media'])->get();
 
         return view('frontend.products.index', compact('products'));
     }
@@ -33,11 +33,11 @@ class ProductController extends Controller
     {
         abort_if(Gate::denies('product_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $categories = ProductCategory::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
         $sub_categories = SubCat::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $tags = ProductTag::pluck('name', 'id');
+
+        $categories = ProductCategory::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         return view('frontend.products.create', compact('categories', 'sub_categories', 'tags'));
     }
@@ -65,13 +65,13 @@ class ProductController extends Controller
     {
         abort_if(Gate::denies('product_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $categories = ProductCategory::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
         $sub_categories = SubCat::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $tags = ProductTag::pluck('name', 'id');
 
-        $product->load('category', 'sub_category', 'tags');
+        $categories = ProductCategory::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $product->load('sub_category', 'tags', 'category');
 
         return view('frontend.products.edit', compact('categories', 'product', 'sub_categories', 'tags'));
     }
@@ -112,7 +112,7 @@ class ProductController extends Controller
     {
         abort_if(Gate::denies('product_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $product->load('category', 'sub_category', 'tags');
+        $product->load('sub_category', 'tags', 'category');
 
         return view('frontend.products.show', compact('product'));
     }

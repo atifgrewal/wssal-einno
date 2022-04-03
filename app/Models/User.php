@@ -12,23 +12,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Str;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+
 use Laravel\Sanctum\HasApiTokens;
-class User extends Authenticatable implements HasMedia
+class User extends Authenticatable
+
 {
     use SoftDeletes;
     use Notifiable;
-    use InteractsWithMedia;
     use HasFactory;
     use HasApiTokens;
     public $table = 'users';
-
-    protected $appends = [
-        'image',
-    ];
 
     protected $hidden = [
         'remember_token',
@@ -50,6 +43,7 @@ class User extends Authenticatable implements HasMedia
         'approved',
         'remember_token',
         'phone_no',
+        'image',
         'address',
         'created_at',
         'updated_at',
@@ -70,12 +64,6 @@ class User extends Authenticatable implements HasMedia
     public function getIsAdminAttribute()
     {
         return $this->roles()->where('id', 1)->exists();
-    }
-
-    public function registerMediaConversions(Media $media = null): void
-    {
-        $this->addMediaConversion('thumb')->fit('crop', 50, 50);
-        $this->addMediaConversion('preview')->fit('crop', 120, 120);
     }
 
     public function getEmailVerifiedAtAttribute($value)
@@ -103,11 +91,6 @@ class User extends Authenticatable implements HasMedia
     public function roles()
     {
         return $this->belongsToMany(Role::class);
-    }
-
-    public function getImageAttribute()
-    {
-        return $this->getMedia('image')->last();
     }
 
     protected function serializeDate(DateTimeInterface $date)
