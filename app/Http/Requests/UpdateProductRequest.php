@@ -21,19 +21,11 @@ class UpdateProductRequest extends FormRequest
                 'string',
                 'required',
             ],
-            'category_id' => [
-                'required',
-                'integer',
-            ],
             'tags.*' => [
                 'integer',
             ],
             'tags' => [
                 'array',
-            ],
-            'variation_id' => [
-                'required',
-                'integer',
             ],
             'regular_price' => [
                 'numeric',
@@ -66,7 +58,7 @@ class UpdateProductRequest extends FormRequest
             'image' => [
                 'array',
             ],
-            'unit_id' => [
+            'category_id' => [
                 'required',
                 'integer',
             ],

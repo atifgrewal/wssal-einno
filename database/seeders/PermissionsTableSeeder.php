@@ -264,46 +264,6 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 64,
-                'title' => 'unit_create',
-            ],
-            [
-                'id'    => 65,
-                'title' => 'unit_edit',
-            ],
-            [
-                'id'    => 66,
-                'title' => 'unit_show',
-            ],
-            [
-                'id'    => 67,
-                'title' => 'unit_delete',
-            ],
-            [
-                'id'    => 68,
-                'title' => 'unit_access',
-            ],
-            [
-                'id'    => 69,
-                'title' => 'variation_create',
-            ],
-            [
-                'id'    => 70,
-                'title' => 'variation_edit',
-            ],
-            [
-                'id'    => 71,
-                'title' => 'variation_show',
-            ],
-            [
-                'id'    => 72,
-                'title' => 'variation_delete',
-            ],
-            [
-                'id'    => 73,
-                'title' => 'variation_access',
-            ],
-            [
-                'id'    => 74,
                 'title' => 'profile_password_edit',
             ],
         ];
