@@ -27,6 +27,11 @@ class Unit extends Model
         'deleted_at',
     ];
 
+    public function unitProducts()
+    {
+        return $this->hasMany(Product::class, 'unit_id', 'id');
+    }
+
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');

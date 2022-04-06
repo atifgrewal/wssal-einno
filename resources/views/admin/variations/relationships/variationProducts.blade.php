@@ -1,5 +1,3 @@
-@extends('layouts.admin')
-@section('content')
 @can('product_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -9,6 +7,7 @@
         </div>
     </div>
 @endcan
+
 <div class="card">
     <div class="card-header">
         {{ trans('cruds.product.title_singular') }} {{ trans('global.list') }}
@@ -16,7 +15,7 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-Product">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-variationProducts">
                 <thead>
                     <tr>
                         <th width="10">
@@ -170,9 +169,6 @@
     </div>
 </div>
 
-
-
-@endsection
 @section('scripts')
 @parent
 <script>
@@ -213,7 +209,7 @@
     order: [[ 1, 'desc' ]],
     pageLength: 100,
   });
-  let table = $('.datatable-Product:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+  let table = $('.datatable-variationProducts:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
