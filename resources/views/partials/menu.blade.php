@@ -176,6 +176,26 @@
                 </a>
             </li>
         @endcan
+        @can('unit_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.units.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/units") || request()->is("admin/units/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-chess-bishop c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.unit.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('variation_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.variations.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/variations") || request()->is("admin/variations/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-bullseye c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.variation.title') }}
+                </a>
+            </li>
+        @endcan
         @php($unread = \App\Models\QaTopic::unreadCount())
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.messenger.index") }}" class="{{ request()->is("admin/messenger") || request()->is("admin/messenger/*") ? "c-active" : "" }} c-sidebar-nav-link">

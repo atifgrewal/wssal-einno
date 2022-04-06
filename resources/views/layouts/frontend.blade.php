@@ -152,6 +152,16 @@
                                             {{ trans('cruds.driver.title') }}
                                         </a>
                                     @endcan
+                                    @can('unit_access')
+                                        <a class="dropdown-item" href="{{ route('frontend.units.index') }}">
+                                            {{ trans('cruds.unit.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('variation_access')
+                                        <a class="dropdown-item" href="{{ route('frontend.variations.index') }}">
+                                            {{ trans('cruds.variation.title') }}
+                                        </a>
+                                    @endcan
 
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

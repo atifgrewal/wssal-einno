@@ -2,6 +2,7 @@
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:sanctum']], function () {
     // Users
+    Route::post('users/media', 'UsersApiController@storeMedia')->name('users.storeMedia');
     Route::apiResource('users', 'UsersApiController');
 
     // Product Category
@@ -30,4 +31,10 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Driver
     Route::post('drivers/media', 'DriverApiController@storeMedia')->name('drivers.storeMedia');
     Route::apiResource('drivers', 'DriverApiController');
+
+    // Unit
+    Route::apiResource('units', 'UnitApiController');
+
+    // Variation
+    Route::apiResource('variations', 'VariationApiController');
 });
