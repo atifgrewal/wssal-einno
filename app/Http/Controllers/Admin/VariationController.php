@@ -57,6 +57,8 @@ class VariationController extends Controller
     {
         abort_if(Gate::denies('variation_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $variation->load('variationProducts');
+
         return view('admin.variations.show', compact('variation'));
     }
 

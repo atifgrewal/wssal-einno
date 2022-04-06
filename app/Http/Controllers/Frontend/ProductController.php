@@ -11,6 +11,8 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductTag;
 use App\Models\SubCat;
+use App\Models\Unit;
+use App\Models\Variation;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -24,7 +26,7 @@ class ProductController extends Controller
     {
         abort_if(Gate::denies('product_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $products = Product::with(['category', 'sub_category', 'tags', 'media'])->get();
+        $products = Product::with(['category', 'sub_category', 'tags', 'variation', 'unit', 'media'])->get();
 
         return view('frontend.products.index', compact('products'));
     }
@@ -39,7 +41,11 @@ class ProductController extends Controller
 
         $tags = ProductTag::pluck('name', 'id');
 
-        return view('frontend.products.create', compact('categories', 'sub_categories', 'tags'));
+        $variations = Variation::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $units = Unit::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('frontend.products.create', compact('categories', 'sub_categories', 'tags', 'units', 'variations'));
     }
 
     public function store(StoreProductRequest $request)
@@ -71,9 +77,13 @@ class ProductController extends Controller
 
         $tags = ProductTag::pluck('name', 'id');
 
-        $product->load('category', 'sub_category', 'tags');
+        $variations = Variation::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('frontend.products.edit', compact('categories', 'product', 'sub_categories', 'tags'));
+        $units = Unit::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $product->load('category', 'sub_category', 'tags', 'variation', 'unit');
+
+        return view('frontend.products.edit', compact('categories', 'product', 'sub_categories', 'tags', 'units', 'variations'));
     }
 
     public function update(UpdateProductRequest $request, Product $product)
@@ -112,7 +122,7 @@ class ProductController extends Controller
     {
         abort_if(Gate::denies('product_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $product->load('category', 'sub_category', 'tags');
+        $product->load('category', 'sub_category', 'tags', 'variation', 'unit');
 
         return view('frontend.products.show', compact('product'));
     }
