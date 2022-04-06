@@ -13,14 +13,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
-use Laravel\Sanctum\HasApiTokens;
-class User extends Authenticatable
+
 {
     use SoftDeletes;
     use Notifiable;
+    use InteractsWithMedia;
     use HasFactory;
     use HasApiTokens;
     public $table = 'users';
+
+    protected $appends = [
+        'image',
+    ];
 
     protected $hidden = [
         'remember_token',
@@ -42,7 +46,6 @@ class User extends Authenticatable
         'approved',
         'remember_token',
         'phone_no',
-        'image',
         'address',
         'created_at',
         'updated_at',
@@ -63,6 +66,12 @@ class User extends Authenticatable
     public function getIsAdminAttribute()
     {
         return $this->roles()->where('id', 1)->exists();
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')->fit('crop', 50, 50);
+        $this->addMediaConversion('preview')->fit('crop', 120, 120);
     }
 
     public function getEmailVerifiedAtAttribute($value)
@@ -90,6 +99,11 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function getImageAttribute()
+    {
+        return $this->getMedia('image')->last();
     }
 
     protected function serializeDate(DateTimeInterface $date)

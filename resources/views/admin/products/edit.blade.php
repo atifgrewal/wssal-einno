@@ -31,6 +31,20 @@
                 <span class="help-block">{{ trans('cruds.product.fields.description_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="category_id">{{ trans('cruds.product.fields.category') }}</label>
+                <select class="form-control select2 {{ $errors->has('category') ? 'is-invalid' : '' }}" name="category_id" id="category_id" required>
+                    @foreach($categories as $id => $entry)
+                        <option value="{{ $id }}" {{ (old('category_id') ? old('category_id') : $product->category->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('category'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('category') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.product.fields.category_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="sub_category_id">{{ trans('cruds.product.fields.sub_category') }}</label>
                 <select class="form-control select2 {{ $errors->has('sub_category') ? 'is-invalid' : '' }}" name="sub_category_id" id="sub_category_id">
                     @foreach($sub_categories as $id => $entry)
@@ -148,20 +162,6 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.image_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label class="required" for="category_id">{{ trans('cruds.product.fields.category') }}</label>
-                <select class="form-control select2 {{ $errors->has('category') ? 'is-invalid' : '' }}" name="category_id" id="category_id" required>
-                    @foreach($categories as $id => $entry)
-                        <option value="{{ $id }}" {{ (old('category_id') ? old('category_id') : $product->category->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('category'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('category') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.product.fields.category_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

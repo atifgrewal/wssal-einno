@@ -81,16 +81,7 @@
                 <span class="help-block">{{ trans('cruds.user.fields.phone_no_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="image">{{ trans('cruds.user.fields.image') }}</label>
-                <input class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}" type="file"accept="image/*" type="file" id="download-cv-file-name" name="image" id="image" value="{{ old('image', '') }}" required>
-                @if($errors->has('image'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('image') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.user.fields.image_helper') }}</span>
-            </div>
-            <div class="form-group">
+
                 <label class="required" for="address">{{ trans('cruds.user.fields.address') }}</label>
                 <input class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" type="text" name="address" id="address" value="{{ old('address', '') }}" required>
                 @if($errors->has('address'))
@@ -99,6 +90,17 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.address_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="image">{{ trans('cruds.user.fields.image') }}</label>
+                <div class="needsclick dropzone {{ $errors->has('image') ? 'is-invalid' : '' }}" id="image-dropzone">
+                </div>
+                @if($errors->has('image'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('image') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.user.fields.image_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
@@ -112,3 +114,4 @@
 
 
 @endsection
+
