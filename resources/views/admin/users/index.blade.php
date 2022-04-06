@@ -48,10 +48,10 @@
                             {{ trans('cruds.user.fields.phone_no') }}
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.image') }}
+                            {{ trans('cruds.user.fields.address') }}
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.address') }}
+                            {{ trans('cruds.user.fields.image') }}
                         </th>
                         <th>
                             &nbsp;
@@ -89,10 +89,14 @@
                                 {{ $user->phone_no ?? '' }}
                             </td>
                             <td>
-                                {{ $user->image ?? '' }}
+                                {{ $user->address ?? '' }}
                             </td>
                             <td>
-                                {{ $user->address ?? '' }}
+                                @if($user->image)
+                                    <a href="{{ $user->image->getUrl() }}" target="_blank">
+                                        {{ trans('global.view_file') }}
+                                    </a>
+                                @endif
                             </td>
                             <td>
                                 @can('user_show')
