@@ -82,7 +82,7 @@
             </div>
             <div class="form-group">
                 <label class="required" for="image">{{ trans('cruds.user.fields.image') }}</label>
-                <input class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}" type="text" name="image" id="image" value="{{ old('image', '') }}" required>
+                <input class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}" type="file"accept="image/*" type="file" id="download-cv-file-name" name="image" id="image" value="{{ old('image', '') }}" required>
                 @if($errors->has('image'))
                     <div class="invalid-feedback">
                         {{ $errors->first('image') }}

@@ -13,7 +13,7 @@ class HomeController
     public function index()
     {
         $data=User::with(['roles'])->where('id',2)->get();
-        //  $data1=User::with(['drivers'])->where('id',4)->get();
+
         //  dd($data1);
         $data2=Driver::all();
         // dd($data2);

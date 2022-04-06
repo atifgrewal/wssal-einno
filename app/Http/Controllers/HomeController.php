@@ -25,11 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $data=User::where('role_id'==2)->all()->sum('id');
-dd("sana");
-        $row=Role::where('id'==2)->sum('id');
-
-        dd($row);
-        return view('home',compact('row'));
+        return view('home');
     }
 }
