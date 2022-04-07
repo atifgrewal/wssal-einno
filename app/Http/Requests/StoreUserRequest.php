@@ -39,10 +39,6 @@ class StoreUserRequest extends FormRequest
                 'required',
                 'unique:users,phone_no',
             ],
-            'image' => [
-                'string',
-                'required',
-            ],
             'address' => [
                 'string',
                 'required',

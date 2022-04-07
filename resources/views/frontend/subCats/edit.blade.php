@@ -48,7 +48,7 @@
                             <span class="help-block">{{ trans('cruds.subCat.fields.description_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label class="required" for="photo">{{ trans('cruds.subCat.fields.photo') }}</label>
+                            <label for="photo">{{ trans('cruds.subCat.fields.photo') }}</label>
                             <div class="needsclick dropzone" id="photo-dropzone">
                             </div>
                             @if($errors->has('photo'))

@@ -32,10 +32,25 @@
                                         {{ trans('cruds.product.fields.description') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.product.fields.category') }}
+                                    </th>
+                                    <th>
                                         {{ trans('cruds.product.fields.sub_category') }}
                                     </th>
                                     <th>
                                         {{ trans('cruds.product.fields.tag') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.product.fields.attribute') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.product.fields.attribute_value') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.product.fields.variation') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.product.fields.unit') }}
                                     </th>
                                     <th>
                                         {{ trans('cruds.product.fields.featured') }}
@@ -62,9 +77,6 @@
                                         {{ trans('cruds.product.fields.image') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.product.fields.category') }}
-                                    </th>
-                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -82,12 +94,31 @@
                                             {{ $product->description ?? '' }}
                                         </td>
                                         <td>
+                                            {{ $product->category->name ?? '' }}
+                                        </td>
+                                        <td>
                                             {{ $product->sub_category->name ?? '' }}
                                         </td>
                                         <td>
                                             @foreach($product->tags as $key => $item)
                                                 <span>{{ $item->name }}</span>
                                             @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach($product->attributes as $key => $item)
+                                                <span>{{ $item->name }}</span>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach($product->attribute_values as $key => $item)
+                                                <span>{{ $item->value }}</span>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            {{ $product->variation->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $product->unit->name ?? '' }}
                                         </td>
                                         <td>
                                             {{ App\Models\Product::FEATURED_SELECT[$product->featured] ?? '' }}
@@ -120,9 +151,6 @@
                                                     {{ trans('global.view_file') }}
                                                 </a>
                                             @endforeach
-                                        </td>
-                                        <td>
-                                            {{ $product->category->name ?? '' }}
                                         </td>
                                         <td>
                                             @can('product_show')

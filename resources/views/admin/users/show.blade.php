@@ -75,18 +75,22 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.user.fields.image') }}
-                        </th>
-                        <td>
-                            {{ $user->image }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.user.fields.address') }}
                         </th>
                         <td>
                             {{ $user->address }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.user.fields.image') }}
+                        </th>
+                        <td>
+                            @if($user->image)
+                                <a href="{{ $user->image->getUrl() }}" target="_blank">
+                                    {{ trans('global.view_file') }}
+                                </a>
+                            @endif
                         </td>
                     </tr>
                 </tbody>
