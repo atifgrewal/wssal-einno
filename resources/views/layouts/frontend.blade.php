@@ -122,6 +122,26 @@
                                             {{ trans('cruds.product.title') }}
                                         </a>
                                     @endcan
+                                    @can('unit_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.units.index') }}">
+                                            {{ trans('cruds.unit.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('variation_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.variations.index') }}">
+                                            {{ trans('cruds.variation.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('attribute_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.attributes.index') }}">
+                                            {{ trans('cruds.attribute.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('attributedetail_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.attributedetails.index') }}">
+                                            {{ trans('cruds.attributedetail.title') }}
+                                        </a>
+                                    @endcan
                                     @can('content_management_access')
                                         <a class="dropdown-item disabled" href="#">
                                             {{ trans('cruds.contentManagement.title') }}
@@ -150,6 +170,11 @@
                                     @can('driver_access')
                                         <a class="dropdown-item" href="{{ route('frontend.drivers.index') }}">
                                             {{ trans('cruds.driver.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('order_access')
+                                        <a class="dropdown-item" href="{{ route('frontend.orders.index') }}">
+                                            {{ trans('cruds.order.title') }}
                                         </a>
                                     @endcan
 

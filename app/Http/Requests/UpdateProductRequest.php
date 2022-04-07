@@ -21,11 +21,36 @@ class UpdateProductRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'category_id' => [
+                'required',
+                'integer',
+            ],
             'tags.*' => [
                 'integer',
             ],
             'tags' => [
                 'array',
+            ],
+            'attributes.*' => [
+                'integer',
+            ],
+            'attributes' => [
+                'array',
+            ],
+            'attribute_values.*' => [
+                'integer',
+            ],
+            'attribute_values' => [
+                'required',
+                'array',
+            ],
+            'variation_id' => [
+                'required',
+                'integer',
+            ],
+            'unit_id' => [
+                'required',
+                'integer',
             ],
             'regular_price' => [
                 'numeric',
@@ -57,10 +82,6 @@ class UpdateProductRequest extends FormRequest
             ],
             'image' => [
                 'array',
-            ],
-            'category_id' => [
-                'required',
-                'integer',
             ],
         ];
     }

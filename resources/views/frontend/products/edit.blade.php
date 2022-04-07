@@ -34,6 +34,20 @@
                             <span class="help-block">{{ trans('cruds.product.fields.description_helper') }}</span>
                         </div>
                         <div class="form-group">
+                            <label class="required" for="category_id">{{ trans('cruds.product.fields.category') }}</label>
+                            <select class="form-control select2" name="category_id" id="category_id" required>
+                                @foreach($categories as $id => $entry)
+                                    <option value="{{ $id }}" {{ (old('category_id') ? old('category_id') : $product->category->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('category'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('category') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.product.fields.category_helper') }}</span>
+                        </div>
+                        <div class="form-group">
                             <label for="sub_category_id">{{ trans('cruds.product.fields.sub_category') }}</label>
                             <select class="form-control select2" name="sub_category_id" id="sub_category_id">
                                 @foreach($sub_categories as $id => $entry)
@@ -64,6 +78,70 @@
                                 </div>
                             @endif
                             <span class="help-block">{{ trans('cruds.product.fields.tag_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="attributes">{{ trans('cruds.product.fields.attribute') }}</label>
+                            <div style="padding-bottom: 4px">
+                                <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                                <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                            </div>
+                            <select class="form-control select2" name="attributes[]" id="attributes" multiple>
+                                @foreach($attributes as $id => $attribute)
+                                    <option value="{{ $id }}" {{ (in_array($id, old('attributes', [])) || $product->attributes->contains($id)) ? 'selected' : '' }}>{{ $attribute }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('attributes'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('attributes') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.product.fields.attribute_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="required" for="attribute_values">{{ trans('cruds.product.fields.attribute_value') }}</label>
+                            <div style="padding-bottom: 4px">
+                                <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                                <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                            </div>
+                            <select class="form-control select2" name="attribute_values[]" id="attribute_values" multiple required>
+                                @foreach($attribute_values as $id => $attribute_value)
+                                    <option value="{{ $id }}" {{ (in_array($id, old('attribute_values', [])) || $product->attribute_values->contains($id)) ? 'selected' : '' }}>{{ $attribute_value }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('attribute_values'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('attribute_values') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.product.fields.attribute_value_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="required" for="variation_id">{{ trans('cruds.product.fields.variation') }}</label>
+                            <select class="form-control select2" name="variation_id" id="variation_id" required>
+                                @foreach($variations as $id => $entry)
+                                    <option value="{{ $id }}" {{ (old('variation_id') ? old('variation_id') : $product->variation->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('variation'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('variation') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.product.fields.variation_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="required" for="unit_id">{{ trans('cruds.product.fields.unit') }}</label>
+                            <select class="form-control select2" name="unit_id" id="unit_id" required>
+                                @foreach($units as $id => $entry)
+                                    <option value="{{ $id }}" {{ (old('unit_id') ? old('unit_id') : $product->unit->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('unit'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('unit') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.product.fields.unit_helper') }}</span>
                         </div>
                         <div class="form-group">
                             <label>{{ trans('cruds.product.fields.featured') }}</label>
@@ -151,20 +229,6 @@
                                 </div>
                             @endif
                             <span class="help-block">{{ trans('cruds.product.fields.image_helper') }}</span>
-                        </div>
-                        <div class="form-group">
-                            <label class="required" for="category_id">{{ trans('cruds.product.fields.category') }}</label>
-                            <select class="form-control select2" name="category_id" id="category_id" required>
-                                @foreach($categories as $id => $entry)
-                                    <option value="{{ $id }}" {{ (old('category_id') ? old('category_id') : $product->category->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('category'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('category') }}
-                                </div>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.product.fields.category_helper') }}</span>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-danger" type="submit">
