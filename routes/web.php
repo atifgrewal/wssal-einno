@@ -15,6 +15,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Users
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
+    Route::post('users/media', 'UsersController@storeMedia')->name('users.storeMedia');
+    Route::post('users/ckmedia', 'UsersController@storeCKEditorImages')->name('users.storeCKEditorImages');
     Route::post('users/parse-csv-import', 'UsersController@parseCsvImport')->name('users.parseCsvImport');
     Route::post('users/process-csv-import', 'UsersController@processCsvImport')->name('users.processCsvImport');
     Route::resource('users', 'UsersController');
@@ -73,6 +75,30 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('drivers/process-csv-import', 'DriverController@processCsvImport')->name('drivers.processCsvImport');
     Route::resource('drivers', 'DriverController');
 
+    // Unit
+    Route::delete('units/destroy', 'UnitController@massDestroy')->name('units.massDestroy');
+    Route::resource('units', 'UnitController');
+
+    // Variation
+    Route::delete('variations/destroy', 'VariationController@massDestroy')->name('variations.massDestroy');
+    Route::post('variations/parse-csv-import', 'VariationController@parseCsvImport')->name('variations.parseCsvImport');
+    Route::post('variations/process-csv-import', 'VariationController@processCsvImport')->name('variations.processCsvImport');
+    Route::resource('variations', 'VariationController');
+
+    // Attribute
+    Route::delete('attributes/destroy', 'AttributeController@massDestroy')->name('attributes.massDestroy');
+    Route::post('attributes/parse-csv-import', 'AttributeController@parseCsvImport')->name('attributes.parseCsvImport');
+    Route::post('attributes/process-csv-import', 'AttributeController@processCsvImport')->name('attributes.processCsvImport');
+    Route::resource('attributes', 'AttributeController');
+
+    // Attributedetail
+    Route::delete('attributedetails/destroy', 'AttributedetailController@massDestroy')->name('attributedetails.massDestroy');
+    Route::resource('attributedetails', 'AttributedetailController');
+
+    // Order
+    Route::delete('orders/destroy', 'OrderController@massDestroy')->name('orders.massDestroy');
+    Route::resource('orders', 'OrderController');
+
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
@@ -106,6 +132,8 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
 
     // Users
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
+    Route::post('users/media', 'UsersController@storeMedia')->name('users.storeMedia');
+    Route::post('users/ckmedia', 'UsersController@storeCKEditorImages')->name('users.storeCKEditorImages');
     Route::resource('users', 'UsersController');
 
     // Product Category
@@ -155,6 +183,26 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     Route::post('drivers/media', 'DriverController@storeMedia')->name('drivers.storeMedia');
     Route::post('drivers/ckmedia', 'DriverController@storeCKEditorImages')->name('drivers.storeCKEditorImages');
     Route::resource('drivers', 'DriverController');
+
+    // Unit
+    Route::delete('units/destroy', 'UnitController@massDestroy')->name('units.massDestroy');
+    Route::resource('units', 'UnitController');
+
+    // Variation
+    Route::delete('variations/destroy', 'VariationController@massDestroy')->name('variations.massDestroy');
+    Route::resource('variations', 'VariationController');
+
+    // Attribute
+    Route::delete('attributes/destroy', 'AttributeController@massDestroy')->name('attributes.massDestroy');
+    Route::resource('attributes', 'AttributeController');
+
+    // Attributedetail
+    Route::delete('attributedetails/destroy', 'AttributedetailController@massDestroy')->name('attributedetails.massDestroy');
+    Route::resource('attributedetails', 'AttributedetailController');
+
+    // Order
+    Route::delete('orders/destroy', 'OrderController@massDestroy')->name('orders.massDestroy');
+    Route::resource('orders', 'OrderController');
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');

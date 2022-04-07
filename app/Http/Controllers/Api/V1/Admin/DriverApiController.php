@@ -8,7 +8,6 @@ use App\Http\Requests\StoreDriverRequest;
 use App\Http\Requests\UpdateDriverRequest;
 use App\Http\Resources\Admin\DriverResource;
 use App\Models\Driver;
-use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,22 +25,8 @@ class DriverApiController extends Controller
 
     public function store(StoreDriverRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required||unique:users,email',
-            'password' => 'required|min:6'
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
-
-        $user->roles()->attach(4); 
         $driver = Driver::create($request->all());
-        $driver->user_id=$user->id;
-        $driver->save();
+
         if ($request->input('profile', false)) {
             $driver->addMedia(storage_path('tmp/uploads/' . basename($request->input('profile'))))->toMediaCollection('profile');
         }

@@ -27,10 +27,6 @@ class UpdateSubCatRequest extends FormRequest
             ],
             'photo' => [
                 'array',
-                'required',
-            ],
-            'photo.*' => [
-                'required',
             ],
         ];
     }

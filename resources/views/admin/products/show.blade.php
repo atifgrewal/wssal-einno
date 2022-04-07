@@ -41,6 +41,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.product.fields.category') }}
+                        </th>
+                        <td>
+                            {{ $product->category->name ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.product.fields.sub_category') }}
                         </th>
                         <td>
@@ -55,6 +63,42 @@
                             @foreach($product->tags as $key => $tag)
                                 <span class="label label-info">{{ $tag->name }}</span>
                             @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.attribute') }}
+                        </th>
+                        <td>
+                            @foreach($product->attributes as $key => $attribute)
+                                <span class="label label-info">{{ $attribute->name }}</span>
+                            @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.attribute_value') }}
+                        </th>
+                        <td>
+                            @foreach($product->attribute_values as $key => $attribute_value)
+                                <span class="label label-info">{{ $attribute_value->value }}</span>
+                            @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.variation') }}
+                        </th>
+                        <td>
+                            {{ $product->variation->name ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.unit') }}
+                        </th>
+                        <td>
+                            {{ $product->unit->name ?? '' }}
                         </td>
                     </tr>
                     <tr>
@@ -127,14 +171,6 @@
                                     {{ trans('global.view_file') }}
                                 </a>
                             @endforeach
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.product.fields.category') }}
-                        </th>
-                        <td>
-                            {{ $product->category->name ?? '' }}
                         </td>
                     </tr>
                 </tbody>

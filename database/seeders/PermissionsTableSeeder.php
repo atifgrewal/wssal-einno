@@ -264,6 +264,106 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 64,
+                'title' => 'unit_create',
+            ],
+            [
+                'id'    => 65,
+                'title' => 'unit_edit',
+            ],
+            [
+                'id'    => 66,
+                'title' => 'unit_show',
+            ],
+            [
+                'id'    => 67,
+                'title' => 'unit_delete',
+            ],
+            [
+                'id'    => 68,
+                'title' => 'unit_access',
+            ],
+            [
+                'id'    => 69,
+                'title' => 'variation_create',
+            ],
+            [
+                'id'    => 70,
+                'title' => 'variation_edit',
+            ],
+            [
+                'id'    => 71,
+                'title' => 'variation_show',
+            ],
+            [
+                'id'    => 72,
+                'title' => 'variation_delete',
+            ],
+            [
+                'id'    => 73,
+                'title' => 'variation_access',
+            ],
+            [
+                'id'    => 74,
+                'title' => 'attribute_create',
+            ],
+            [
+                'id'    => 75,
+                'title' => 'attribute_edit',
+            ],
+            [
+                'id'    => 76,
+                'title' => 'attribute_show',
+            ],
+            [
+                'id'    => 77,
+                'title' => 'attribute_delete',
+            ],
+            [
+                'id'    => 78,
+                'title' => 'attribute_access',
+            ],
+            [
+                'id'    => 79,
+                'title' => 'attributedetail_create',
+            ],
+            [
+                'id'    => 80,
+                'title' => 'attributedetail_edit',
+            ],
+            [
+                'id'    => 81,
+                'title' => 'attributedetail_show',
+            ],
+            [
+                'id'    => 82,
+                'title' => 'attributedetail_delete',
+            ],
+            [
+                'id'    => 83,
+                'title' => 'attributedetail_access',
+            ],
+            [
+                'id'    => 84,
+                'title' => 'order_create',
+            ],
+            [
+                'id'    => 85,
+                'title' => 'order_edit',
+            ],
+            [
+                'id'    => 86,
+                'title' => 'order_show',
+            ],
+            [
+                'id'    => 87,
+                'title' => 'order_delete',
+            ],
+            [
+                'id'    => 88,
+                'title' => 'order_access',
+            ],
+            [
+                'id'    => 89,
                 'title' => 'profile_password_edit',
             ],
         ];

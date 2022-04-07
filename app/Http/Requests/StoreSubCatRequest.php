@@ -27,10 +27,6 @@ class StoreSubCatRequest extends FormRequest
             ],
             'photo' => [
                 'array',
-                'required',
-            ],
-            'photo.*' => [
-                'required',
             ],
         ];
     }
