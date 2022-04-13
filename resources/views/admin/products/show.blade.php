@@ -31,6 +31,52 @@
                             {{ $product->name }}
                         </td>
                     </tr>
+                    {{-- 1 --}}
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.price') }}
+                        </th>
+                        <td>
+                            {{ $product->price }}
+                        </td>
+                    </tr>
+                    {{-- 2 --}}
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.discount') }}
+                        </th>
+                        <td>
+                            {{ $product->discount }}
+                        </td>
+                    </tr>
+                    {{-- 3 --}}
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.start_time') }}
+                        </th>
+                        <td>
+                            {{ $product->start_time }}
+                        </td>
+                    </tr>
+                    {{-- 4 --}}
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.end_time') }}
+                        </th>
+                        <td>
+                            {{ $product->end_time }}
+                        </td>
+                    </tr>
+                    {{-- 5 --}}
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.disc_type') }}
+                        </th>
+                        <td>
+                            {{ $product->disc_type }}
+                        </td>
+                    </tr>
+                    {{-- end --}}
                     <tr>
                         <th>
                             {{ trans('cruds.product.fields.description') }}

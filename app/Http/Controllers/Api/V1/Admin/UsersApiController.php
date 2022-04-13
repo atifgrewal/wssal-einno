@@ -71,4 +71,9 @@ class UsersApiController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+    public function logout (Request $request) {
+        $request->user()->currentAccessToken()->delete();
+        $response = ['message' => 'You have been successfully logged out!'];
+        return response($response, 200);
+    }
 }

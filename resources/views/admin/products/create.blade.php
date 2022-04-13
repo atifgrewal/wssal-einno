@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('content')
-
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"> --}}
 <div class="card">
     <div class="card-header">
         {{ trans('global.create') }} {{ trans('cruds.product.title_singular') }}
@@ -19,6 +20,75 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.name_helper') }}</span>
             </div>
+
+            {{-- 1 --}}
+            <div class="form-group">
+                <label class="required" for="price">{{ trans('cruds.product.fields.price') }}</label>
+                <input class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" type="number" name="price" id="price" value="{{ old('price', '') }}" required>
+                @if($errors->has('price'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('price') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.product.fields.price_helper') }}</span>
+            </div>
+            {{-- 2 --}}
+            <div class="form-group">
+                <label class="required" for="discount">{{ trans('cruds.product.fields.discount') }}</label>
+                <input class="form-control {{ $errors->has('discount') ? 'is-invalid' : '' }}" type="number" name="discount" id="discount" value="{{ old('discount', '') }}" required>
+                @if($errors->has('discount'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('discount') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.product.fields.discount_helper') }}</span>
+            </div>
+            {{-- 3 --}}
+            <div class="form-group">
+                <label class="required" for="start_time">{{ trans('cruds.product.fields.start_time') }}</label>
+                <input class="form-control {{ $errors->has('start_time') ? 'is-invalid' : '' }}" type="time" name="start_time" id="start_time" value="{{ old('start_time', '') }}" required>
+                @if($errors->has('start_time'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('start_time') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.product.fields.start_time_helper') }}</span>
+            </div>
+
+            {{-- 4 --}}
+            <div class="form-group">
+                <label class="required" for="end_time">{{ trans('cruds.product.fields.end_time') }}</label>
+                <input class="form-control {{ $errors->has('end_time') ? 'is-invalid' : '' }}" type="time" name="end_time" id="end_time" value="{{ old('end_time', '') }}" required>
+                @if($errors->has('end_time'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('end_time') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.product.fields.end_time_helper') }}</span>
+            </div>
+            {{--  5 select --}}
+
+            <div class="form-group">
+                <label>{{ trans('cruds.product.fields.disc_type') }}</label>
+                <select class="form-control {{ $errors->has('disc_type') ? 'is-invalid' : '' }}" name="disc_type" id="disc_type">
+                    <option value disabled {{ old('disc_type', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach(App\Models\Product::disc_type_SELECT as $key => $label)
+                        <option value="{{ $key }}" {{ old('disc_type', '0') === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('disc_type'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('disc_type') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.product.fields.disc_type_helper') }}</span>
+            </div>
+
+
+
+
+{{-- end  --}}
+
             <div class="form-group">
                 <label for="description">{{ trans('cruds.product.fields.description') }}</label>
                 <textarea class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description" id="description">{{ old('description') }}</textarea>
@@ -29,8 +99,9 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.description_helper') }}</span>
             </div>
+            {{-- cat --}}
             <div class="form-group">
-                <label class="required" for="category_id">{{ trans('cruds.product.fields.category') }}</label>
+                <label class="required" class="browser-default custom-select"   for="category_id">{{ trans('cruds.product.fields.category') }}</label>
                 <select class="form-control select2 {{ $errors->has('category') ? 'is-invalid' : '' }}" name="category_id" id="category_id" required>
                     @foreach($categories as $id => $entry)
                         <option value="{{ $id }}" {{ old('category_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
@@ -43,8 +114,9 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.category_helper') }}</span>
             </div>
+            {{-- sub category --}}
             <div class="form-group">
-                <label for="sub_category_id">{{ trans('cruds.product.fields.sub_category') }}</label>
+                <label for="sub_category" >{{ trans('cruds.product.fields.sub_category') }}</label>
                 <select class="form-control select2 {{ $errors->has('sub_category') ? 'is-invalid' : '' }}" name="sub_category_id" id="sub_category_id">
                     @foreach($sub_categories as $id => $entry)
                         <option value="{{ $id }}" {{ old('sub_category_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
@@ -57,15 +129,17 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.sub_category_helper') }}</span>
             </div>
+
+
             <div class="form-group">
                 <label for="tags">{{ trans('cruds.product.fields.tag') }}</label>
                 <div style="padding-bottom: 4px">
                     <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
                     <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                 </div>
-                <select class="form-control select2 {{ $errors->has('tags') ? 'is-invalid' : '' }}" name="tags[]" id="tags" multiple>
+                <select type="text" data-role="tagsinput" id="input" class="form-control select2 {{ $errors->has('tags') ? 'is-invalid' : '' }}" name="tags[]"  multiple>
                     @foreach($tags as $id => $tag)
-                        <option value="{{ $id }}" {{ in_array($id, old('tags', [])) ? 'selected' : '' }}>{{ $tag }}</option>
+                        <option value="{{ $id }}" {{ in_array($id, old('tag', [])) ? 'selected' : '' }}>{{ $tag }}</option>
                     @endforeach
                 </select>
                 @if($errors->has('tags'))
@@ -111,20 +185,20 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.attribute_value_helper') }}</span>
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label class="required" for="variation_id">{{ trans('cruds.product.fields.variation') }}</label>
                 <select class="form-control select2 {{ $errors->has('variation') ? 'is-invalid' : '' }}" name="variation_id" id="variation_id" required>
                     @foreach($variations as $id => $entry)
                         <option value="{{ $id }}" {{ old('variation_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                     @endforeach
-                </select>
-                @if($errors->has('variation'))
+                </select> --}}
+                {{-- @if($errors->has('variation'))
                     <div class="invalid-feedback">
                         {{ $errors->first('variation') }}
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.variation_helper') }}</span>
-            </div>
+            </div> --}}
             <div class="form-group">
                 <label class="required" for="unit_id">{{ trans('cruds.product.fields.unit') }}</label>
                 <select class="form-control select2 {{ $errors->has('unit') ? 'is-invalid' : '' }}" name="unit_id" id="unit_id" required>
@@ -346,4 +420,101 @@ Dropzone.options.imageDropzone = {
      }
 }
 </script>
+{{-- here u can see my wrong turn --}}
+<script type = "text/javascript"
+         src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+
+      </script>
+      <script src="main.js"></script>
+<script type="text/javascript">
+
+    $.ajaxSetup({
+    headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+    });
+    $(document).ready(function () {
+   $('#category_id').on('change',function(e) {
+        alert('d');
+    var cat_id = e.target.value;
+    $.ajax({
+        url: "{{route('admin.products.dependent_categ')}}",
+    type:"POST",
+    data: {
+    cat_id: cat_id
+    },
+    success:function (data) {
+    $('#sub_category_id').empty();
+    $.each(data.subcategories[0].subcategories,function(index,subcategory){
+    $('#subcategory').append('<option value="'+subcategory.id+'">'+subcategory.name+'</option>');
+    })
+    }
+    })
+    });
+    });
+
+    </script>
+
+
+{{-- <script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#category_id').on('change',function(e) {
+
+            alert('d');
+
+            alert( $(this).find(":selected").val() );
+        $.ajax({
+    url: "{{route('admin.products.dependent_categ')}}",
+    type:"POST",
+    data: {
+    cat_id: cat_id
+    },
+
+    success:function (data) {
+    $('#sub_category_id').empty();
+    $.each(data.subcategories[0].subcategories,function(index,subcategory){
+    $('#sub_category_id').append('<option value="'+subcategory.id+'">'+subcategory.name+'</option>');
+    })
+    }
+    })
+    });
+    });
+    </script> --}}
+    <script>
+        $('.select2').select2({
+            // data: ["Piano", "Flute", "Guitar", "Drums", "Photography"],
+            tags: true,
+            maximumSelectionLength: 10,
+            tokenSeparators: [',', ' '],
+            placeholder: "Select or type keywords",
+
+        });
+    </script>
+        {{-- <script>
+
+            $(document).ready(function(){
+            $('#input').tagsinput('items');
+            });
+            </script>
+            <link href="https://cdn.jsdelivr.net/0.8.0/.css" rel="stylesheet"/>
+
+           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+           <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script> --}}
+
+           <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+           integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+           crossorigin="anonymous"></script>
+
+          <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+           integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+           crossorigin="anonymous"></script>
+
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+
+
+          {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script> --}}
+          {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script> --}}
 @endsection

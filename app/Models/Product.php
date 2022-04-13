@@ -21,6 +21,14 @@ class Product extends Model implements HasMedia
         '1' => 'Featured',
     ];
 
+
+    public const disc_type_SELECT = [
+        '0' => 'Percent',
+        '1' => 'Amount',
+    ];
+
+
+
     public $table = 'products';
 
     protected $appends = [
@@ -36,10 +44,11 @@ class Product extends Model implements HasMedia
 
     protected $fillable = [
         'name',
+        'price','discount','disc_type','start_time','end_time',
         'description',
         'category_id',
         'sub_category_id',
-        'variation_id',
+        // 'variation_id',
         'unit_id',
         'featured',
         'regular_price',
@@ -83,10 +92,10 @@ class Product extends Model implements HasMedia
         return $this->belongsToMany(Attributedetail::class);
     }
 
-    public function variation()
-    {
-        return $this->belongsTo(Variation::class, 'variation_id');
-    }
+    // public function variation()
+    // {
+    //     return $this->belongsTo(Variation::class, 'variation_id');
+    // }
 
     public function unit()
     {
@@ -107,4 +116,9 @@ class Product extends Model implements HasMedia
     {
         return $date->format('Y-m-d H:i:s');
     }
+    // public function variations()
+    // {
+    //     return $this->hasMany(Variation::class);
+    // }
+
 }

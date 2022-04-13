@@ -25,29 +25,29 @@ class StoreProductRequest extends FormRequest
                 'required',
                 'integer',
             ],
-            'tags.*' => [
-                'integer',
-            ],
+            // 'tags.*' => [
+            //     'integer',
+            // ],
             'tags' => [
                 'array',
             ],
-            'attributes.*' => [
-                'integer',
-            ],
+            // 'attributes.*' => [
+            //     'integer',
+            // ],
             'attributes' => [
                 'array',
             ],
-            'attribute_values.*' => [
-                'integer',
-            ],
+            // 'attribute_values.*' => [
+            //     'integer',
+            // ],
             'attribute_values' => [
                 'required',
                 'array',
             ],
-            'variation_id' => [
-                'required',
-                'integer',
-            ],
+            // 'variation_id' => [
+            //     'required',
+            //     'integer',
+            // ],
             'unit_id' => [
                 'required',
                 'integer',

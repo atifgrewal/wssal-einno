@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Api\V1\Admin;
 
+use Gate;
+use App\Models\Product;
+use Illuminate\Http\Request;
+use App\Models\Attributedetail;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Resources\Admin\ProductResource;
-use App\Models\Product;
-use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Controllers\Traits\MediaUploadingTrait;
 
 class ProductApiController extends Controller
 {
@@ -26,6 +27,13 @@ class ProductApiController extends Controller
     public function store(StoreProductRequest $request)
     {
         $product = Product::create($request->all());
+        $product1=$request->name;
+        $product2=$request->value;
+        $data=$product1.$product2;
+
+    //   dd($data);
+
+
         $product->tags()->sync($request->input('tags', []));
         $product->attributes()->sync($request->input('attributes', []));
         $product->attribute_values()->sync($request->input('attribute_values', []));
@@ -37,7 +45,7 @@ class ProductApiController extends Controller
             $product->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('image');
         }
 
-        return (new ProductResource($product))
+        return (new ProductResource($product,$data))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
     }
@@ -51,6 +59,7 @@ class ProductApiController extends Controller
 
     public function update(UpdateProductRequest $request, Product $product)
     {
+        // dd($request->all());
         $product->update($request->all());
         $product->tags()->sync($request->input('tags', []));
         $product->attributes()->sync($request->input('attributes', []));

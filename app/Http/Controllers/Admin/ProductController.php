@@ -14,7 +14,7 @@ use App\Models\ProductCategory;
 use App\Models\ProductTag;
 use App\Models\SubCat;
 use App\Models\Unit;
-use App\Models\Variation;
+// use App\Models\Variation;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -28,13 +28,15 @@ class ProductController extends Controller
     {
         abort_if(Gate::denies('product_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $products = Product::with(['category', 'sub_category', 'tags', 'attributes', 'attribute_values', 'variation', 'unit', 'media'])->get();
+        $products = Product::with(['category', 'sub_category', 'tags', 'attributes', 'attribute_values',  'unit', 'media'])->get();
 
         return view('admin.products.index', compact('products'));
     }
 
     public function create()
     {
+
+
         abort_if(Gate::denies('product_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $categories = ProductCategory::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
@@ -47,19 +49,23 @@ class ProductController extends Controller
 
         $attribute_values = Attributedetail::pluck('value', 'id');
 
-        $variations = Variation::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        // $variations = Variation::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $units = Unit::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.products.create', compact('attribute_values', 'attributes', 'categories', 'sub_categories', 'tags', 'units', 'variations'));
+        return view('admin.products.create', compact('attribute_values', 'attributes', 'categories', 'sub_categories', 'tags', 'units'));
     }
 
     public function store(StoreProductRequest $request)
     {
-        $product = Product::create($request->all());
-        $product->tags()->sync($request->input('tags', []));
-        $product->attributes()->sync($request->input('attributes', []));
-        $product->attribute_values()->sync($request->input('attribute_values', []));
+
+        //  dd($request->all());
+        //  $product=new Product;
+        $product=Product::create($request->all());
+        // $product->tags()->sync($request->input('tags', []));
+        // dd($request->all());
+        // $product->attributes()->sync($request->input('attributes', []));
+        // $product->attribute_values()->sync($request->input('attribute_values', []));
         if ($request->input('fetaured_image', false)) {
             $product->addMedia(storage_path('tmp/uploads/' . basename($request->input('fetaured_image'))))->toMediaCollection('fetaured_image');
         }
@@ -71,7 +77,7 @@ class ProductController extends Controller
         if ($media = $request->input('ck-media', false)) {
             Media::whereIn('id', $media)->update(['model_id' => $product->id]);
         }
-
+        $product->save();
         return redirect()->route('admin.products.index');
     }
 
@@ -89,13 +95,13 @@ class ProductController extends Controller
 
         $attribute_values = Attributedetail::pluck('value', 'id');
 
-        $variations = Variation::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        // $variations = Variation::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $units = Unit::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $product->load('category', 'sub_category', 'tags', 'attributes', 'attribute_values', 'variation', 'unit');
+        $product->load('category', 'sub_category', 'tags', 'attributes', 'attribute_values',  'unit');
 
-        return view('admin.products.edit', compact('attribute_values', 'attributes', 'categories', 'product', 'sub_categories', 'tags', 'units', 'variations'));
+        return view('admin.products.edit', compact('attribute_values', 'attributes', 'categories', 'product', 'sub_categories', 'tags', 'units'));
     }
 
     public function update(UpdateProductRequest $request, Product $product)
@@ -136,7 +142,7 @@ class ProductController extends Controller
     {
         abort_if(Gate::denies('product_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $product->load('category', 'sub_category', 'tags', 'attributes', 'attribute_values', 'variation', 'unit');
+        $product->load('category', 'sub_category', 'tags', 'attributes', 'attribute_values', 'unit');
 
         return view('admin.products.show', compact('product'));
     }
@@ -167,5 +173,17 @@ class ProductController extends Controller
         $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
+    }
+    public function subCat(Request $request)
+    {
+        dd($request->all());
+        $parent_id = $request->cat_id;
+
+        $subcategories = Category::where('id',$parent_id)
+                              ->with('subcategories')
+                              ->get();
+        return response()->json([
+            'subcategories' => $subcategories
+        ]);
     }
 }

@@ -9,7 +9,7 @@ class CreateProductTagsTable extends Migration
     public function up()
     {
         Schema::create('product_tags', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('name')->nullable();
             $table->timestamps();
             $table->softDeletes();

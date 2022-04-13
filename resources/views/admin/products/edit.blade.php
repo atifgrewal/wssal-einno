@@ -19,7 +19,73 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.name_helper') }}</span>
+
             </div>
+{{-- 1 --}}
+<div class="form-group">
+    <label class="required" for="price">{{ trans('cruds.product.fields.price') }}</label>
+    <input class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" type="number" name="price" id="price" value="{{ old('price', $product->price) }}" required>
+    @if($errors->has('price'))
+        <div class="invalid-feedback">
+            {{ $errors->first('price') }}
+        </div>
+    @endif
+    <span class="help-block">{{ trans('cruds.product.fields.price_helper') }}</span>
+</div>
+{{-- 2 --}}
+<div class="form-group">
+    <label class="required" for="discount">{{ trans('cruds.product.fields.discount') }}</label>
+    <input class="form-control {{ $errors->has('discount') ? 'is-invalid' : '' }}" type="number" name="discount" id="discount" value="{{ old('discount', $product->discount) }}" required>
+    @if($errors->has('discount'))
+        <div class="invalid-feedback">
+            {{ $errors->first('discount') }}
+        </div>
+    @endif
+    <span class="help-block">{{ trans('cruds.product.fields.discount_helper') }}</span>
+</div>
+{{-- 3 --}}
+<div class="form-group">
+    <label class="required" for="start_time">{{ trans('cruds.product.fields.start_time') }}</label>
+    <input class="form-control {{ $errors->has('start_time') ? 'is-invalid' : '' }}" type="time" name="start_time" id="start_time" value="{{ old('start_time', $product->start_time) }}" required>
+    @if($errors->has('start_time'))
+        <div class="invalid-feedback">
+            {{ $errors->first('start_time') }}
+        </div>
+    @endif
+    <span class="help-block">{{ trans('cruds.product.fields.start_time_helper') }}</span>
+</div>
+    {{-- 4 --}}
+    <div class="form-group">
+        <label class="required" for="end_time">{{ trans('cruds.product.fields.end_time') }}</label>
+        <input class="form-control {{ $errors->has('end_time') ? 'is-invalid' : '' }}" type="time" name="end_time" id="end_time" value="{{ old('end_time', $product->discount) }}" required>
+        @if($errors->has('end_time'))
+            <div class="invalid-feedback">
+                {{ $errors->first('end_time') }}
+            </div>
+        @endif
+        <span class="help-block">{{ trans('cruds.product.fields.end_time_helper') }}</span>
+    </div>
+    {{--  5 select --}}
+
+    <div class="form-group">
+        <label>{{ trans('cruds.product.fields.disc_type') }}</label>
+        <select class="form-control {{ $errors->has('disc_type') ? 'is-invalid' : '' }}" name="disc_type" id="disc_type" >
+            <option value disabled {{ old('disc_type', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+            @foreach(App\Models\Product::disc_type_SELECT as $key => $label)
+                <option value="{{ $key }}" {{ old('disc_type', $product->disc_type) === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+            @endforeach
+        </select>
+        @if($errors->has('disc_type'))
+            <div class="invalid-feedback">
+                {{ $errors->first('disc_type') }}
+            </div>
+        @endif
+        <span class="help-block">{{ trans('cruds.product.fields.disc_type_helper') }}</span>
+    </div>
+
+
+
+
             <div class="form-group">
                 <label for="description">{{ trans('cruds.product.fields.description') }}</label>
                 <textarea class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description" id="description">{{ old('description', $product->description) }}</textarea>
@@ -112,7 +178,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.attribute_value_helper') }}</span>
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label class="required" for="variation_id">{{ trans('cruds.product.fields.variation') }}</label>
                 <select class="form-control select2 {{ $errors->has('variation') ? 'is-invalid' : '' }}" name="variation_id" id="variation_id" required>
                     @foreach($variations as $id => $entry)
@@ -125,7 +191,7 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.variation_helper') }}</span>
-            </div>
+            </div> --}}
             <div class="form-group">
                 <label class="required" for="unit_id">{{ trans('cruds.product.fields.unit') }}</label>
                 <select class="form-control select2 {{ $errors->has('unit') ? 'is-invalid' : '' }}" name="unit_id" id="unit_id" required>

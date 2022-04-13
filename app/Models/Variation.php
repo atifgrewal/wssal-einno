@@ -28,6 +28,8 @@ class Variation extends Model
         'name',
         'quantity',
         'price',
+        ' prod_id',
+        // 'attr_det_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -35,7 +37,7 @@ class Variation extends Model
 
     public function variationProducts()
     {
-        return $this->hasMany(Product::class, 'variation_id', 'id');
+        return $this->hasMany(Product::class);
     }
 
     protected function serializeDate(DateTimeInterface $date)

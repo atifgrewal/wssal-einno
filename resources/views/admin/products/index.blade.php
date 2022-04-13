@@ -29,6 +29,22 @@
                             {{ trans('cruds.product.fields.name') }}
                         </th>
                         <th>
+                            {{ trans('cruds.product.fields.price') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.product.fields.discount') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.product.fields.disc_type') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.product.fields.start_time') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.product.fields.end_time') }}
+                        </th>
+
+                        <th>
                             {{ trans('cruds.product.fields.description') }}
                         </th>
                         <th>
@@ -93,6 +109,23 @@
                             <td>
                                 {{ $product->name ?? '' }}
                             </td>
+                            <td>
+                                {{ $product->price ?? '' }}
+                            </td>
+                            <td>
+                                {{ $product->discount ?? '' }}
+                            </td>
+                            <td>
+                                {{ $product->disc_type ?? '' }}
+                            </td>
+                            <td>
+                                {{ $product->start_time ?? '' }}
+                            </td>
+                            <td>
+                                {{ $product->end_time ?? '' }}
+                            </td>
+
+
                             <td>
                                 {{ $product->description ?? '' }}
                             </td>
@@ -234,7 +267,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 })
 
 </script>

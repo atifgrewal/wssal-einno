@@ -121,6 +121,22 @@ return [
             'id_helper'              => ' ',
             'name'                   => 'Name',
             'name_helper'            => ' ',
+            'price'                   => 'Price',
+            'price_helper'            => ' ',
+            'discount'                   => 'Discount',
+            'discount_helper'            => ' ',
+
+            'start_time'                   => 'start_time',
+            'start_time_helper'            => ' ',
+
+            'end_time'                   => 'end_time',
+            'end_time_helper'            => ' ',
+
+            'disc_type'               => 'Discount Type',
+            'disc_type_helper'        => ' ',
+
+
+
             'description'            => 'Description',
             'description_helper'     => ' ',
             'tag'                    => 'Tags',

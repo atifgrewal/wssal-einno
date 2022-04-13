@@ -40,4 +40,7 @@ class Attributedetail extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
+    // public function variations(){
+    //     return $this->hasMany(Attributedetail::class,'attr_det_id','id');
+    // }
 }

@@ -32,6 +32,7 @@ class CreateVendorsTable extends Migration
             $table->string('bank_name');
             $table->string('iban_no');
             $table->string('swift_code');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

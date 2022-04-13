@@ -44,10 +44,10 @@ class UpdateProductRequest extends FormRequest
                 'required',
                 'array',
             ],
-            'variation_id' => [
-                'required',
-                'integer',
-            ],
+            // 'variation_id' => [
+            //     'required',
+            //     'integer',
+            // ],
             'unit_id' => [
                 'required',
                 'integer',

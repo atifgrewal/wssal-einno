@@ -31,6 +31,7 @@ class CreateDriversTable extends Migration
             $table->decimal('wal_amount', 15, 2)->nullable();
             $table->decimal('phone_no', 15, 2);
             $table->decimal('wal_mobile_no', 15, 2);
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

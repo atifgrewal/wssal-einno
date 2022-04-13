@@ -46,4 +46,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Order
     Route::apiResource('orders', 'OrderApiController');
+    Route::post('logout', 'UsersApiController@logout')->name('logout.api');
 });
+Route::post('register', 'Api\\AuthController@register');
+Route::post('login', 'Api\\AuthController@login');
+// Route::
