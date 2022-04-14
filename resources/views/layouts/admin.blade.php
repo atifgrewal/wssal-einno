@@ -228,23 +228,23 @@
     </script>
     <script>
         $(document).ready(function() {
-    $('.searchable-field').select2({
-        minimumInputLength: 3,
-        ajax: {
-            url: '{{ route("admin.globalSearch") }}',
-            dataType: 'json',
-            type: 'GET',
-            delay: 200,
-            data: function (term) {
-                return {
-                    search: term
-                };
-            },
-            results: function (data) {
-                return {
-                    data
-                };
-            }
+    // $('.searchable-field').select2({
+    //     minimumInputLength: 3,
+    //     ajax: {
+    //         url: '{{ route("admin.globalSearch") }}',
+    //         dataType: 'json',
+    //         type: 'GET',
+    //         delay: 200,
+    //         data: function (term) {
+    //             return {
+    //                 search: term
+    //             };
+    //         },
+    //         results: function (data) {
+    //             return {
+    //                 data
+    //             };
+    //         }
         },
         escapeMarkup: function (markup) { return markup; },
         templateResult: formatItem,

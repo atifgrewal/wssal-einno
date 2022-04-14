@@ -465,6 +465,10 @@ return [
             'id_helper'         => ' ',
             'product'           => 'Product',
             'product_helper'    => ' ',
+
+            'st_date'           => 'Date',
+            'st_date_helper'    => ' ',
+
             'driver'            => 'Driver',
             'driver_helper'     => ' ',
             'customer'          => 'Customer',
@@ -475,6 +479,13 @@ return [
             'payment_helper'    => ' ',
             'status'            => 'Status',
             'status_helper'     => ' ',
+
+            'order_status'            => 'Order_Status',
+            'order_status_helper'     => ' ',
+
+            'order_type'            => 'Order_Type',
+            'order_type_helper'     => ' ',
+
             'created_at'        => 'Created at',
             'created_at_helper' => ' ',
             'updated_at'        => 'Updated at',

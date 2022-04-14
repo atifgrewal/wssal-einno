@@ -41,8 +41,18 @@
                             {{ trans('cruds.order.fields.payment') }}
                         </th>
                         <th>
-                            {{ trans('cruds.order.fields.status') }}
+                            {{ trans('cruds.order.fields.Payment Status') }}
                         </th>
+                        <th>
+                            {{ trans('cruds.order.fields.st_date') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.order.fields.order_status') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.order.fields.order_type') }}
+                        </th>
+
                         <th>
                             &nbsp;
                         </th>
@@ -77,6 +87,18 @@
                             <td>
                                 {{ App\Models\Order::STATUS_SELECT[$order->status] ?? '' }}
                             </td>
+                            <td>
+                                {{ App\Models\Order::STATUS_SELECT[$order->order_status] ?? '' }}
+                            </td>
+
+                            <td>
+                                {{ App\Models\Order::STATUS_SELECT[$order->order_type] ?? '' }}
+                            </td>
+                            <td>
+                                {{ $order->st_date ?? '' }}
+                            </td>
+
+
                             <td>
                                 @can('order_show')
                                     <a class="btn btn-xs btn-primary" href="{{ route('admin.orders.show', $order->id) }}">
@@ -156,7 +178,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 })
 
 </script>

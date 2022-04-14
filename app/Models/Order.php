@@ -16,6 +16,14 @@ class Order extends Model
         '0' => 'Enable',
         '1' => 'Disable',
     ];
+    public const ORDER_STATUS_SELECT = [
+        '0' => 'Enable',
+        '1' => 'Disable',
+    ];
+    public const ORDER_TYPE_SELECT = [
+        '0' => 'Enable',
+        '1' => 'Disable',
+    ];
 
     public $table = 'orders';
 
@@ -31,6 +39,8 @@ class Order extends Model
         'quantity',
         'payment',
         'status',
+        'date',
+
         'created_at',
         'updated_at',
         'deleted_at',
