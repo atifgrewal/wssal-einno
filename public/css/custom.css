@@ -153,3 +153,23 @@ table.dataTable thead .sorting_desc {
     width: 100px;
     margin-top: 24px;
 }
+.zhd-shadow{
+    box-shadow: 0 0 9px 0px rgb(0 0 0 / 30%);
+
+}
+.zhd-login-btn {
+    background-color: #f4cd06 !important;
+    border-color: #f4cd06 !important;
+}
+.zhd-login-btn:focus{
+    box-shadow: 0 0 0 0.2rem #ffc107 !important;
+
+}
+.zhd-hover .c-sidebar-nav-link:hover{
+    background: #f4cd06 !important;
+
+}
+.zhd-hover .c-sidebar-nav-dropdown-toggle:hover{
+    background: #f4cd06 !important;
+
+}

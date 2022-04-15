@@ -7,7 +7,7 @@
         </a>
     </div>
 
-    <ul class="c-sidebar-nav">
+    <ul class="c-sidebar-nav zhd-hover">
         <li>
             <select class="searchable-field form-control">
 
