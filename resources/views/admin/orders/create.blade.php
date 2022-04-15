@@ -77,9 +77,9 @@
         </div>
     @endif
 
+    <span class="help-block">{{ trans('cruds.order.fields.st_date_helper') }}</span>
+</div>
 
-                <span class="help-block">{{ trans('cruds.order.fields.st_date_helper') }}</span>
-            </div>
 {{-- order status --}}
 
 <div class="form-group">

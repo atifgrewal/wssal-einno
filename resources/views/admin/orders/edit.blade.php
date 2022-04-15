@@ -76,6 +76,21 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.order.fields.payment_helper') }}</span>
             </div>
+            {{-- st date --}}
+            <div class="form-group">
+                <label class="required" for="st_date">{{ trans('cruds.order.fields.st_date') }}</label>
+                <input class="form-control {{ $errors->has('st_date') ? 'is-invalid' : '' }}" type="date" name="st_date" id="st_date" value="{{ old('st_date', $order->st_date) }}" step="0.01" required>
+                @if($errors->has('st_date'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('st_date') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.order.fields.st_date_helper') }}</span>
+            </div>
+
+
+
+
             <div class="form-group">
                 <label class="required">{{ trans('cruds.order.fields.status') }}</label>
                 <select class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status" required>
@@ -91,6 +106,41 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.order.fields.status_helper') }}</span>
             </div>
+{{-- order status --}}
+
+<div class="form-group">
+    <label class="required">{{ trans('cruds.order.fields.order_status') }}</label>
+    <select class="form-control {{ $errors->has('order_status') ? 'is-invalid' : '' }}" name="order_status" id="order_status" required>
+        <option value disabled {{ old('order_status', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+        @foreach(App\Models\Order::ORDER_STATUS_SELECT as $key => $label)
+            <option value="{{ $key }}" {{ old('order_status', $order->order_status) === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+        @endforeach
+    </select>
+    @if($errors->has('order_status'))
+        <div class="invalid-feedback">
+            {{ $errors->first('order_status') }}
+        </div>
+    @endif
+    <span class="help-block">{{ trans('cruds.order.fields.order_status_helper') }}</span>
+</div>
+{{-- order type --}}
+<div class="form-group">
+    <label class="required">{{ trans('cruds.order.fields.order_type') }}</label>
+    <select class="form-control {{ $errors->has('order_type') ? 'is-invalid' : '' }}" name="order_type" id="order_type" required>
+        <option value disabled {{ old('order_type', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+        @foreach(App\Models\Order::ORDER_TYPE_SELECT as $key => $label)
+            <option value="{{ $key }}" {{ old('order_type', $order->order_type) === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+        @endforeach
+    </select>
+    @if($errors->has('order_type'))
+        <div class="invalid-feedback">
+            {{ $errors->first('order_type') }}
+        </div>
+    @endif
+    <span class="help-block">{{ trans('cruds.order.fields.order_type_helper') }}</span>
+</div>
+
+
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}

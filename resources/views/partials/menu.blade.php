@@ -155,6 +155,35 @@
                 </ul>
             </li>
         @endcan
+{{-- pos order --}}
+@can('pos_order_access')
+<li class="c-sidebar-nav-dropdown {{ request()->is("admin/product-categories*") ? "c-show" : "" }} {{ request()->is("admin/sub-cats*") ? "c-show" : "" }} {{ request()->is("admin/product-tags*") ? "c-show" : "" }} {{ request()->is("admin/products*") ? "c-show" : "" }} {{ request()->is("admin/units*") ? "c-show" : "" }} {{ request()->is("admin/variations*") ? "c-show" : "" }} {{ request()->is("admin/attributes*") ? "c-show" : "" }} {{ request()->is("admin/attributedetails*") ? "c-show" : "" }}">
+    <a class="c-sidebar-nav-dropdown-toggle" href="#">
+        <i class="fa-fw fas fa-shopping-cart c-sidebar-nav-icon">
+
+        </i>
+        {{ trans('cruds.Pos Order.title') }}
+    </a>
+    <ul class="c-sidebar-nav-dropdown-items">
+        @can('order_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.product-categorie.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/product-categories") || request()->is("admin/product-categories/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-folder c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.productCategory.title') }}
+                </a>
+            </li>
+        @endcan
+
+
+    </ul>
+</li>
+@endcan
+
+{{-- end --}}
+
+
         @can('content_management_access')
             <li class="c-sidebar-nav-dropdown {{ request()->is("admin/content-categories*") ? "c-show" : "" }} {{ request()->is("admin/content-tags*") ? "c-show" : "" }} {{ request()->is("admin/content-pages*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
@@ -197,6 +226,98 @@
                 </ul>
             </li>
         @endcan
+
+
+   {{-- ahsan --}}
+   @can('content_management_access')
+   <li class="c-sidebar-nav-dropdown {{ request()->is("admin/content-categories*") ? "c-show" : "" }} {{ request()->is("admin/content-tags*") ? "c-show" : "" }} {{ request()->is("admin/content-pages*") ? "c-show" : "" }}">
+       <a class="c-sidebar-nav-dropdown-toggle" href="#">
+           <i class="fa-fw fas fa-book c-sidebar-nav-icon">
+
+           </i>
+           {{ trans('cruds.orderManagement.title') }}
+       </a>
+       <ul class="c-sidebar-nav-dropdown-items">
+           @can('content_category_access')
+               <li class="c-sidebar-nav-item">
+                   <a href="{{ route("admin.order_cancel") }}" class="c-sidebar-nav-link {{ request()->is("admin/content-categories") || request()->is("admin/content-categories/*") ? "c-active" : "" }}">
+                       <i class="fa-fw fas fa-folder c-sidebar-nav-icon">
+
+                       </i>
+                       {{ trans('cruds.orderCategory.title') }}
+                   </a>
+               </li>
+           @endcan
+           @can('content_tag_access')
+               <li class="c-sidebar-nav-item">
+                   <a href="{{ route("admin.order_pending") }}" class="c-sidebar-nav-link {{ request()->is("admin/content-tags") || request()->is("admin/content-tags/*") ? "c-active" : "" }}">
+                       <i class="fa-fw fas fa-tags c-sidebar-nav-icon">
+
+                       </i>
+                       {{ trans('cruds.orderTag.title') }}
+                   </a>
+               </li>
+           @endcan
+           @can('content_page_access')
+               <li class="c-sidebar-nav-item">
+                   <a href="{{ route("admin.order_confirmed") }}" class="c-sidebar-nav-link {{ request()->is("admin/content-pages") || request()->is("admin/content-pages/*") ? "c-active" : "" }}">
+                       <i class="fa-fw fas fa-file c-sidebar-nav-icon">
+
+                       </i>
+                       {{ trans('cruds.orderPage.title') }}
+                   </a>
+               </li>
+           @endcan
+
+           @can('content_page_access')
+               <li class="c-sidebar-nav-item">
+                   <a href="{{ route("admin.order_in_process") }}" class="c-sidebar-nav-link {{ request()->is("admin/content-pages") || request()->is("admin/content-pages/*") ? "c-active" : "" }}">
+                       <i class="fa-fw fas fa-file c-sidebar-nav-icon">
+
+                       </i>
+                       {{ trans('cruds.orderInProcess.title') }}
+                   </a>
+               </li>
+           @endcan
+
+           @can('content_page_access')
+               <li class="c-sidebar-nav-item">
+                   <a href="{{ route("admin.order_ready_delivery") }}" class="c-sidebar-nav-link {{ request()->is("admin/content-pages") || request()->is("admin/content-pages/*") ? "c-active" : "" }}">
+                       <i class="fa-fw fas fa-file c-sidebar-nav-icon">
+
+                       </i>
+                       {{ trans('cruds.orderReadydelivery.title') }}
+                   </a>
+               </li>
+           @endcan
+
+           @can('content_page_access')
+           <li class="c-sidebar-nav-item">
+               <a href="{{ route("admin.order_item_way") }}" class="c-sidebar-nav-link {{ request()->is("admin/content-pages") || request()->is("admin/content-pages/*") ? "c-active" : "" }}">
+                   <i class="fa-fw fas fa-file c-sidebar-nav-icon">
+
+                   </i>
+                   {{ trans('cruds.orderItemOnWay.title') }}
+               </a>
+           </li>
+           @endcan
+
+           @can('content_page_access')
+           <li class="c-sidebar-nav-item">
+               <a href="{{ route("admin.order_delivered") }}" class="c-sidebar-nav-link {{ request()->is("admin/content-pages") || request()->is("admin/content-pages/*") ? "c-active" : "" }}">
+                   <i class="fa-fw fas fa-file c-sidebar-nav-icon">
+
+                   </i>
+                   {{ trans('cruds.orderDelivered.title') }}
+               </a>
+           </li>
+           @endcan
+       </ul>
+   </li>
+@endcan
+   {{-- ahsan --}}
+
+
         @can('vendor_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.vendors.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/vendors") || request()->is("admin/vendors/*") ? "c-active" : "" }}">
@@ -217,13 +338,20 @@
                 </a>
             </li>
         @endcan
+
+
+
+
+
+
+
         @can('order_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.orders.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/orders") || request()->is("admin/orders/*") ? "c-active" : "" }}">
                     <i class="fa-fw fab fa-first-order c-sidebar-nav-icon">
 
                     </i>
-                    {{ trans('cruds.order.title') }}
+                    {{ trans('cruds.posorder.title') }}
                 </a>
             </li>
         @endcan

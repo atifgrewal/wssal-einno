@@ -59,6 +59,16 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.order.fields.st_date') }}
+                        </th>
+                        <td>
+                            {{ $order->st_date }}
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <th>
                             {{ trans('cruds.order.fields.payment') }}
                         </th>
                         <td>
@@ -73,6 +83,25 @@
                             {{ App\Models\Order::STATUS_SELECT[$order->status] ?? '' }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.order.fields.order_status') }}
+                        </th>
+                        <td>
+                            {{ App\Models\Order::STATUS_SELECT[$order->order_status] ?? '' }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            {{ trans('cruds.order.fields.order_type') }}
+                        </th>
+                        <td>
+                            {{ App\Models\Order::STATUS_SELECT[$order->order_type] ?? '' }}
+                        </td>
+                    </tr>
+
+
                 </tbody>
             </table>
             <div class="form-group">
