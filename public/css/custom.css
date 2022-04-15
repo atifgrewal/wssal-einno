@@ -130,3 +130,26 @@ table.dataTable thead .sorting_desc {
 .custom-select.form-control-sm {
     padding: 0.25rem 1.5rem;
 }
+/* zahid css */
+.zhd-bg{
+    position: relative;
+}
+.zhd-bg::before{
+    background-image:  url("../images/zhd-bg.jpg");
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: '';
+    opacity: 0.4;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.zhd-login {
+    text-align: center;
+}
+.zhd-menu-logo img{
+    width: 100px;
+    margin-top: 24px;
+}

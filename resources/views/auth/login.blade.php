@@ -1,11 +1,19 @@
 @extends('layouts.app')
-@section('content')
+@section('content')   <div class="logo-image">
+      
 <div class="row justify-content-center">
+ 
     <div class="col-md-6">
         <div class="card mx-4">
-            <div class="card-body p-4">
-                <h1>{{ trans('panel.site_title') }}</h1>
+            <div class="card-body p-4 ">
+                <div class="zhd-login mb-4">
+                <img src="images/logo_wssal.png" alt="image">
 
+                </div>
+                
+                <!-- <h1>{{ trans('panel.site_title') }}</h1> -->
+
+                
                 <p class="text-muted">{{ trans('global.login') }}</p>
 
                 @if(session('message'))

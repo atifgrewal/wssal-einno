@@ -1,8 +1,9 @@
 <div id="sidebar" class="c-sidebar c-sidebar-fixed c-sidebar-lg-show">
 
     <div class="c-sidebar-brand d-md-down-none">
-        <a class="c-sidebar-brand-full h4" href="#">
-            {{ trans('panel.site_title') }}
+        <a class="c-sidebar-brand-full zhd-menu-logo h4" href="#">
+        <img src="images/logo_wssal.png" alt="image">
+
         </a>
     </div>
 
