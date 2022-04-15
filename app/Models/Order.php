@@ -13,12 +13,17 @@ class Order extends Model
     use HasFactory;
 
     public const STATUS_SELECT = [
-        '0' => 'Enable',
-        '1' => 'Disable',
+        '0' => 'Cash',
+        '1' => 'Card',
     ];
     public const ORDER_STATUS_SELECT = [
-        '0' => 'Enable',
-        '1' => 'Disable',
+        '0' => 'Cancel',
+        '1' => 'Pending',
+        '2' => 'Confirmed',
+        '3' => 'In process',
+        '4' => 'Ready delivery',
+        '5' => 'Item on a way',
+        '6' => 'Delivered',
     ];
     public const ORDER_TYPE_SELECT = [
         '0' => 'Enable',
@@ -39,7 +44,7 @@ class Order extends Model
         'quantity',
         'payment',
         'status',
-        'date',
+        'st_date',
 
         'created_at',
         'updated_at',

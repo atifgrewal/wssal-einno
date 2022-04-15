@@ -99,6 +99,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Order
     Route::delete('orders/destroy', 'OrderController@massDestroy')->name('orders.massDestroy');
     Route::resource('orders', 'OrderController');
+    Route::get('cancel','OrderController@order_cancel')->name('order_cancel');
+    Route::get('pending','OrderController@order_pending')->name('order_pending');
+    Route::get('confirmed','OrderController@order_confirmed')->name('order_confirmed');
+    Route::get('in_process','OrderController@order_in_process')->name('order_in_process');
+    Route::get('ready_delivery','OrderController@order_ready_delivery')->name('order_ready_delivery');
+    Route::get('item_way','OrderController@order_item_way')->name('order_item_way');
+    Route::get('delivered','OrderController@order_delivered')->name('order_delivered');
+
 
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');

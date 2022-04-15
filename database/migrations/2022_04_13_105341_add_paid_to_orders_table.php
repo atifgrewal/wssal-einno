@@ -15,8 +15,8 @@ class AddPaidToOrdersTable extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->date('st_date')->nullable();
-            $table->string('order_status')->nullable();
-            $table->string('order_type')->nullable();
+            $table->string('order_status')->default(1);
+            $table->string('order_type')->default(1);
 
 
         });

@@ -42,6 +42,16 @@ class StoreOrderRequest extends FormRequest
             'status' => [
                 'required',
             ],
+            'order_status' => [
+                'required',
+            ],
+            'order_type' => [
+                'required',
+            ],
+            'st_date' => [
+                'required',
+                'date',
+            ],
         ];
     }
 }

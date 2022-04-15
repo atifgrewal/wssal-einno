@@ -21,8 +21,81 @@ class OrderController extends Controller
         abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $orders = Order::with(['products', 'driver', 'customer'])->get();
+        // dd($orders);
+           $orders1=Order::with(['products', 'driver', 'customer'])->where('order_status',1)->get();
+        //    dd($orders);
+        return view('admin.orders.index', compact('orders','orders1'));
+    }
+    // order_cancel
+    public function order_cancel()
+    {
+        abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.orders.index', compact('orders'));
+
+        // dd($orders);
+           $orders=Order::with(['products', 'driver', 'customer'])->where('order_status',0)->get();
+        //    dd($orders);
+        return view('admin.orders.cancel', compact('orders'));
+    }
+    public function order_pending()
+    {
+        abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+
+        // dd($orders);
+           $orders=Order::with(['products', 'driver', 'customer'])->where('order_status',1)->get();
+        //    dd($orders);
+        return view('admin.orders.pending', compact('orders'));
+    }
+    public function order_confirmed()
+    {
+        abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+
+        // dd($orders);
+           $orders=Order::with(['products', 'driver', 'customer'])->where('order_status',2)->get();
+        //    dd($orders);
+        return view('admin.orders.confirmed', compact('orders'));
+    }
+    public function order_in_process()
+    {
+        abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+
+        // dd($orders);
+           $orders=Order::with(['products', 'driver', 'customer'])->where('order_status',3)->get();
+        //    dd($orders);
+        return view('admin.orders.in_process', compact('orders'));
+    }
+    public function order_ready_delivery()
+    {
+        abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+
+        // dd($orders);
+           $orders=Order::with(['products', 'driver', 'customer'])->where('order_status',4)->get();
+        //    dd($orders);
+        return view('admin.orders.ready_delivery', compact('orders'));
+    }
+    public function order_item_way()
+    {
+        abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+
+        // dd($orders);
+           $orders=Order::with(['products', 'driver', 'customer'])->where('order_status',5)->get();
+        //    dd($orders);
+        return view('admin.orders.item_way', compact('orders'));
+    }
+    public function order_delivered()
+    {
+        abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+
+        // dd($orders);
+           $orders=Order::with(['products', 'driver', 'customer'])->where('order_status',6)->get();
+        //    dd($orders);
+        return view('admin.orders.delivered', compact('orders'));
     }
 
     public function create()
@@ -40,15 +113,25 @@ class OrderController extends Controller
 
     public function store(StoreOrderRequest $request)
     {
-        $order = Order::create($request->all());
-        $order::Order::create([
+        //  $order = Order::create($request->all());
+        $order=Order::create([
             'st_date'=>$request->st_date,
-            'order_status'=>$request->order_status,
-            'order_type'=>$request->order_type,
-        ]);
-        dd($request->all());
-        $order->products()->sync($request->input('products', []));
 
+            // 'order_status'=>$request->order_status,
+            // dd($request->all()),
+
+            'order_type'=>$request->order_type,
+            'quantity'=>$request->quantity,
+            'payment'=>$request->payment,
+            'status'=>$request->status,
+
+
+        ]);
+        //  dd($order);
+        $order->order_status=$request->order_status;
+                //  dd($request->all());
+        $order->save();
+        $order->products()->sync($request->input('products', []));
         return redirect()->route('admin.orders.index');
     }
 

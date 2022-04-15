@@ -28,7 +28,8 @@ class ProductController extends Controller
     {
         abort_if(Gate::denies('product_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $products = Product::with(['category', 'sub_category', 'tags', 'attributes', 'attribute_values',  'unit', 'media'])->get();
+        $products = Product::all();
+        // with(['category', 'sub_category', 'tags', 'attributes', 'attribute_values',  'unit', 'media'])->get();
 
         return view('admin.products.index', compact('products'));
     }
@@ -62,6 +63,9 @@ class ProductController extends Controller
         //  dd($request->all());
         //  $product=new Product;
         $product=Product::create($request->all());
+        $product=Product::latest();
+// dd($product);
+//
         // $product->tags()->sync($request->input('tags', []));
         // dd($request->all());
         // $product->attributes()->sync($request->input('attributes', []));
@@ -70,6 +74,7 @@ class ProductController extends Controller
             $product->addMedia(storage_path('tmp/uploads/' . basename($request->input('fetaured_image'))))->toMediaCollection('fetaured_image');
         }
 
+
         foreach ($request->input('image', []) as $file) {
             $product->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('image');
         }
@@ -77,7 +82,7 @@ class ProductController extends Controller
         if ($media = $request->input('ck-media', false)) {
             Media::whereIn('id', $media)->update(['model_id' => $product->id]);
         }
-        $product->save();
+        // $product->save();
         return redirect()->route('admin.products.index');
     }
 

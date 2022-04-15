@@ -137,7 +137,7 @@
                     <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
                     <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                 </div>
-                <select type="text"  class="form-control select2 {{ $errors->has('tags') ? 'is-invalid' : '' }}" name="tags[]"  multiple>
+                <select type="text"  id="tagsid"class="form-control select2 {{ $errors->has('tags') ? 'is-invalid' : '' }}" name="tags[]"  multiple>
                     @foreach($tags as $id => $tag)
                         <option value="{{ $id }}" {{ in_array($id, old('tag', [])) ? 'selected' : '' }}>{{ $tag }}</option>
                     @endforeach
@@ -420,79 +420,31 @@ Dropzone.options.imageDropzone = {
      }
 }
 </script>
+<script>
+    $('#tagsid').select2({
+        // data: ["Piano", "Flute", "Guitar", "Drums", "Photography"],
+        tags: true,
+        maximumSelectionLength: 10,
+        tokenSeparators: [',', ' '],
+        placeholder: "Select or type keywords",
 
-{{--
-<script type="text/javascript">
-
-    $(document).ready(function () {
-
-        $('#category_id').on('change',function(e) {
-
-
-
-            {{-- alert( $(this).find(":selected").val() );
-        $.ajax({
-    url: "{{route('admin.products.dependent_categ')}}",
-    type:"POST",
-    data: {
-    cat_id: cat_id
-    },
-
-    success:function (data) {
-    $('#sub_category_id').empty();
-    $.each(data.subcategories[0].subcategories,function(index,subcategory){
-    $('#sub_category_id').append('<option value="'+subcategory.id+'">'+subcategory.name+'</option>');
-    })
-    }
-    })
     });
-    });
-</script> --}}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
-            {{-- // <link href="https://cdn.jsdelivr.net/0.8.0/.css" rel="stylesheet"/>
+</script>
 
-        //    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+           integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+           crossorigin="anonymous"></script>
 
-        //    <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+          <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+           integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+           crossorigin="anonymous"></script>
 
-
-          {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script> --}}
-
-
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
-        {{-- //    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script> --}} --}}
-
-          {{-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-          crossorigin="anonymous"></script> --}}
-
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-          integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-          crossorigin="anonymous"></script>
-
-  {{-- <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js')}} "></script> --}}
- {{-- <script>$("#e9").select2();</script> --}}
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
 
 
-<script type="text/javascript">
-    // alert('sana');
-$(document).ready(function(){
 
-$('.select2').select({
-    data: ["Piano", "Flute", "Guitar", "Drums", "Photography"],
-    tags: true,
-    maximumSelectionLength: 10,
-    tokenSeparators: [',', ' '],
-    placeholder: "Select or type keywords",
 
-});
-});
 
-  </script>
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-{{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
-{{-- <script src="path/to/select2.min.js"></script> --}}
 
+{{-- {{dd("sana")}} --}}
  @endsection
