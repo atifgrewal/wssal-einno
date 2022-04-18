@@ -2,7 +2,7 @@
 
     <div class="c-sidebar-brand d-md-down-none">
         <a class="c-sidebar-brand-full zhd-menu-logo h4" href="#">
-        <img src="images/logo_wssal.png" alt="image">
+        <img src="{{asset('images/logo_wssal.png')}}" alt="image">
 
         </a>
     </div>
