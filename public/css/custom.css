@@ -171,5 +171,8 @@ table.dataTable thead .sorting_desc {
 }
 .zhd-hover .c-sidebar-nav-dropdown-toggle:hover{
     background: #f4cd06 !important;
+}
+.form-control:focus{
+    box-shadow: 0 0 0 0.2rem rgb(244 205 6) !important;
 
 }
