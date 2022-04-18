@@ -174,5 +174,31 @@ table.dataTable thead .sorting_desc {
 }
 .form-control:focus{
     box-shadow: 0 0 0 0.2rem rgb(244 205 6) !important;
+    
+}
+.c-sidebar{
+    background: #ffff!important;
+}
+.c-sidebar .c-active.c-sidebar-nav-dropdown-toggle, .c-sidebar .c-sidebar-nav-link.c-active {
+    color: rgb(31, 28, 28) !important;
+    background: #f4cd06 !important;
 
+}
+.c-sidebar .c-sidebar-nav-link.c-active .c-sidebar-nav-icon {
+    color: rgb(27, 27, 27)!important;
+}
+.c-sidebar .c-sidebar-nav-dropdown-toggle, .c-sidebar .c-sidebar-nav-link {
+    color: rgba(12, 11, 11, 0.8) !important;
+    background: 0 0;
+}
+.c-sidebar .c-sidebar-nav-dropdown-toggle .c-sidebar-nav-icon, .c-sidebar .c-sidebar-nav-link .c-sidebar-nav-icon {
+    color: rgba(12, 11, 11, 0.8) !important;
+
+}
+.c-sidebar .c-sidebar-nav-dropdown-toggle::after{
+background-image: url(../images/arrow-left.svg)!important;
+
+}
+.c-sidebar .c-sidebar-brand {
+    background: #f8f9fa !important;
 }
