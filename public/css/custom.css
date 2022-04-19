@@ -27,7 +27,7 @@ table.dataTable tbody th.select-checkbox::after {
 
 .dt-buttons .btn {
     margin-left: 0.333em;
-    border-radius: 0;
+    border-radius: 5px;
 }
 
 .table.datatable {
@@ -73,7 +73,7 @@ table.dataTable thead .sorting_desc {
 
 .btn-default {
     color: #23282c;
-    background-color: #f0f3f5;
+    background-color: #f4cd06;
     border-color: #f0f3f5;
 }
 
@@ -84,7 +84,7 @@ table.dataTable thead .sorting_desc {
 
 .btn-default:hover {
     color: #23282c;
-    background-color: #d9e1e6;
+    background-color: rgb(253 225 83);
     border-color: #d1dbe1;
 }
 
@@ -201,4 +201,7 @@ background-image: url(../images/arrow-left.svg)!important;
 }
 .c-sidebar .c-sidebar-brand {
     background: #f8f9fa !important;
+}
+.c-sidebar .c-sidebar-nav-dropdown.c-show {
+    background: rgb(248 249 250) !important;
 }
