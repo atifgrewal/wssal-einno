@@ -2,12 +2,12 @@
 
     <div class="c-sidebar-brand d-md-down-none">
         <a class="c-sidebar-brand-full zhd-menu-logo h4" href="#">
-        <img src="images/logo_wssal.png" alt="image">
+        <img src="{{asset('images/logo_wssal.png')}}" alt="image">
 
         </a>
     </div>
 
-    <ul class="c-sidebar-nav">
+    <ul class="c-sidebar-nav zhd-hover">
         <li>
             <select class="searchable-field form-control">
 
@@ -155,7 +155,9 @@
                 </ul>
             </li>
         @endcan
+        
 {{-- pos order --}}
+
 @can('pos_order_access')
 <li class="c-sidebar-nav-dropdown {{ request()->is("admin/product-categories*") ? "c-show" : "" }} {{ request()->is("admin/sub-cats*") ? "c-show" : "" }} {{ request()->is("admin/product-tags*") ? "c-show" : "" }} {{ request()->is("admin/products*") ? "c-show" : "" }} {{ request()->is("admin/units*") ? "c-show" : "" }} {{ request()->is("admin/variations*") ? "c-show" : "" }} {{ request()->is("admin/attributes*") ? "c-show" : "" }} {{ request()->is("admin/attributedetails*") ? "c-show" : "" }}">
     <a class="c-sidebar-nav-dropdown-toggle" href="#">
@@ -226,7 +228,16 @@
                 </ul>
             </li>
         @endcan
+        @can('order_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.orders.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/orders") || request()->is("admin/orders/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fab fa-first-order c-sidebar-nav-icon">
 
+                    </i>
+                    {{ trans('cruds.posorder.title') }}
+                </a>
+            </li>
+        @endcan
 
    {{-- ahsan --}}
    @can('content_management_access')
@@ -238,6 +249,7 @@
            {{ trans('cruds.orderManagement.title') }}
        </a>
        <ul class="c-sidebar-nav-dropdown-items">
+           
            @can('content_category_access')
                <li class="c-sidebar-nav-item">
                    <a href="{{ route("admin.order_cancel") }}" class="c-sidebar-nav-link {{ request()->is("admin/content-categories") || request()->is("admin/content-categories/*") ? "c-active" : "" }}">
@@ -318,6 +330,7 @@
    {{-- ahsan --}}
 
 
+
         @can('vendor_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.vendors.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/vendors") || request()->is("admin/vendors/*") ? "c-active" : "" }}">
@@ -345,16 +358,7 @@
 
 
 
-        @can('order_access')
-            <li class="c-sidebar-nav-item">
-                <a href="{{ route("admin.orders.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/orders") || request()->is("admin/orders/*") ? "c-active" : "" }}">
-                    <i class="fa-fw fab fa-first-order c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.posorder.title') }}
-                </a>
-            </li>
-        @endcan
+      
         @php($unread = \App\Models\QaTopic::unreadCount())
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.messenger.index") }}" class="{{ request()->is("admin/messenger") || request()->is("admin/messenger/*") ? "c-active" : "" }} c-sidebar-nav-link">

@@ -4,13 +4,17 @@
 <div class="row justify-content-center">
     <div class="col-md-6">
 
-        <div class="card mx-4">
+        <div class="card mx-4 zhd-shadow">
             <div class="card-body p-4">
+            <div class="zhd-login mb-4">
+                <img src="{{asset('images/logo_wssal.png')}}" alt="image">
+
+                </div>
 
                 <form method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
-
-                    <h1>{{ trans('panel.site_title') }}</h1>
+<!-- 
+                    <h1>{{ trans('panel.site_title') }}</h1> -->
                     <p class="text-muted">{{ trans('global.register') }}</p>
 
                     <div class="input-group mb-3">
@@ -64,7 +68,7 @@
                         <input type="password" name="password_confirmation" class="form-control" required placeholder="{{ trans('global.login_password_confirmation') }}">
                     </div>
 
-                    <button class="btn btn-block btn-primary">
+                    <button class="btn btn-block btn-primary zhd-login-btn">
                         {{ trans('global.register') }}
                     </button>
                 </form>
@@ -75,4 +79,4 @@
     </div>
 </div>
 
-@endsection
+@endsection 

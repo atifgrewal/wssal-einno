@@ -4,7 +4,7 @@
 <div class="row justify-content-center">
  
     <div class="col-md-6">
-        <div class="card mx-4">
+        <div class="card mx-4 zhd-shadow">
             <div class="card-body p-4 ">
                 <div class="zhd-login mb-4">
                 <img src="images/logo_wssal.png" alt="image">
@@ -66,7 +66,7 @@
 
                     <div class="row">
                         <div class="col-6">
-                            <button type="submit" class="btn btn-primary px-4">
+                            <button type="submit" class="btn btn-primary zhd-login-btn px-4">
                                 {{ trans('global.login') }}
                             </button>
                         </div>

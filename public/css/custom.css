@@ -27,7 +27,7 @@ table.dataTable tbody th.select-checkbox::after {
 
 .dt-buttons .btn {
     margin-left: 0.333em;
-    border-radius: 0;
+    border-radius: 5px;
 }
 
 .table.datatable {
@@ -73,8 +73,9 @@ table.dataTable thead .sorting_desc {
 
 .btn-default {
     color: #23282c;
-    background-color: #f0f3f5;
+    background-color: #f4cd06;
     border-color: #f0f3f5;
+    display: none!important;
 }
 
 .btn-default.focus,
@@ -84,7 +85,7 @@ table.dataTable thead .sorting_desc {
 
 .btn-default:hover {
     color: #23282c;
-    background-color: #d9e1e6;
+    background-color: rgb(253 225 83);
     border-color: #d1dbe1;
 }
 
@@ -145,6 +146,8 @@ table.dataTable thead .sorting_desc {
     opacity: 0.4;
     background-repeat: no-repeat;
     background-size: cover;
+    filter: blur(1px);
+
 }
 .zhd-login {
     text-align: center;
@@ -153,3 +156,71 @@ table.dataTable thead .sorting_desc {
     width: 100px;
     margin-top: 24px;
 }
+.zhd-shadow{
+    box-shadow: 0 0 9px 0px rgb(0 0 0 / 30%);
+
+}
+.zhd-login-btn {
+    background-color: #f4cd06 !important;
+    border-color: #f4cd06 !important;
+}
+.zhd-login-btn:focus{
+    box-shadow: 0 0 0 0.2rem #ffc107 !important;
+
+}
+.zhd-hover .c-sidebar-nav-link:hover{
+    background: #f4cd06 !important;
+
+}
+.zhd-hover .c-sidebar-nav-dropdown-toggle:hover{
+    background: #f4cd06 !important;
+}
+.form-control:focus{
+    box-shadow: 0 0 0 0.2rem rgb(244 205 6) !important;
+    
+}
+.c-sidebar{
+    background: #ffff!important;
+}
+.c-sidebar .c-active.c-sidebar-nav-dropdown-toggle, .c-sidebar .c-sidebar-nav-link.c-active {
+    color: rgb(31, 28, 28) !important;
+    background: #f4cd06 !important;
+
+}
+.c-sidebar .c-sidebar-nav-link.c-active .c-sidebar-nav-icon {
+    color: rgb(27, 27, 27)!important;
+}
+.c-sidebar .c-sidebar-nav-dropdown-toggle, .c-sidebar .c-sidebar-nav-link {
+    color: rgba(12, 11, 11, 0.8) !important;
+    background: 0 0;
+}
+.c-sidebar .c-sidebar-nav-dropdown-toggle .c-sidebar-nav-icon, .c-sidebar .c-sidebar-nav-link .c-sidebar-nav-icon {
+    color: rgba(12, 11, 11, 0.8) !important;
+
+}
+.c-sidebar .c-sidebar-nav-dropdown-toggle::after{
+background-image: url(../images/arrow-left.svg)!important;
+
+}
+.c-sidebar .c-sidebar-brand {
+    background: #f8f9fa !important;
+}
+.c-sidebar .c-sidebar-nav-dropdown.c-show {
+    background: rgb(248 249 250) !important;
+}
+ .btn-primary{
+    background-color: #f4cd06 !important;
+    border-color: #ffd915 !important;
+   
+}
+.dt-buttons .btn-danger{
+    padding: 1px 5px !important;
+}
+.dt-buttons .btn-primary{
+    padding: 1px 5px !important;
+
+}
+    div.dt-buttons {
+
+        float: right !important;
+    }
