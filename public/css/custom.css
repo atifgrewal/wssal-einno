@@ -75,6 +75,7 @@ table.dataTable thead .sorting_desc {
     color: #23282c;
     background-color: #f4cd06;
     border-color: #f0f3f5;
+    display: none!important;
 }
 
 .btn-default.focus,
@@ -145,6 +146,8 @@ table.dataTable thead .sorting_desc {
     opacity: 0.4;
     background-repeat: no-repeat;
     background-size: cover;
+    filter: blur(1px);
+
 }
 .zhd-login {
     text-align: center;
@@ -205,3 +208,19 @@ background-image: url(../images/arrow-left.svg)!important;
 .c-sidebar .c-sidebar-nav-dropdown.c-show {
     background: rgb(248 249 250) !important;
 }
+ .btn-primary{
+    background-color: #f4cd06 !important;
+    border-color: #ffd915 !important;
+   
+}
+.dt-buttons .btn-danger{
+    padding: 3px 8px !important;
+}
+.dt-buttons .btn-primary{
+    padding: 3px 8px !important;
+
+}
+    div.dt-buttons {
+
+        float: right !important;
+    }
