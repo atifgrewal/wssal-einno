@@ -27,26 +27,37 @@ class VendorApiController extends Controller
     public function store(StoreVendorRequest $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique:users,email',
-            'password' => 'required|min:6'
+            // 'name' => 'required',
+            // 'email' => 'required|unique:users,email',
+            // 'password' => 'required|min:6'
+            //    'phone'=> 'required'
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
+            // 'name' => $request->name,
+            'phone'=>$request->phone
+            // 'email' => $request->email,
+            // 'password' => bcrypt($request->password),
         ]);
 
         $user->roles()->attach(3); // Simple user role
 
         // return response()->json($user->id);
-        $vendor = Vendor::create($request->all());
+        // $vendor = Vendor::create($request->all());
+        $vendor =Vendor::create([
+            'name'=>$request->name,
+            'business_name'=>$request->business_name,
+            'address'=>$request->address,
+            'cid_no'=>$request->cid_no,
+            'cid_expiry_data'=>$request->cid_expiry_data,
+
+
+        ]);
         $vendor->user_id=$user->id;
-        $vendor->save();
-        if ($request->input('image', false)) {
-            $vendor->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('image');
-        }
+        // $vendor->save();
+        // if ($request->input('image', false)) {
+        //     $vendor->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('image');
+        // }
 
         if ($request->input('cnic_image', false)) {
             $vendor->addMedia(storage_path('tmp/uploads/' . basename($request->input('cnic_image'))))->toMediaCollection('cnic_image');
@@ -66,19 +77,25 @@ class VendorApiController extends Controller
 
     public function update(UpdateVendorRequest $request, Vendor $vendor)
     {
-        $vendor->update($request->all());
+        // $vendor->update($request->all());
 
-        if ($request->input('image', false)) {
-            if (!$vendor->image || $request->input('image') !== $vendor->image->file_name) {
-                if ($vendor->image) {
-                    $vendor->image->delete();
-                }
-                $vendor->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('image');
-            }
-        } elseif ($vendor->image) {
-            $vendor->image->delete();
-        }
-
+        // if ($request->input('image', false)) {
+        //     if (!$vendor->image || $request->input('image') !== $vendor->image->file_name) {
+        //         if ($vendor->image) {
+        //             $vendor->image->delete();
+        //         }
+        //         $vendor->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('image');
+        //     }
+        // } elseif ($vendor->image) {
+        //     $vendor->image->delete();
+        // }
+    $vendor->update([
+    'name'=>$request->name,
+    'business_name'=>$request->business_name,
+    'address'=>$request->address,
+    'cid_no'=>$request->cid_no,
+    'cid_expiry_data'=>$request->cid_expiry_data,
+      ]);
         if ($request->input('cnic_image', false)) {
             if (!$vendor->cnic_image || $request->input('cnic_image') !== $vendor->cnic_image->file_name) {
                 if ($vendor->cnic_image) {
