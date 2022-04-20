@@ -26,23 +26,23 @@ class StoreVendorRequest extends FormRequest
                 'string',
                 'max:225',
                 'required',
-                'unique:vendors',
+                // 'unique:vendors',
             ],
-            'status' => [
-                'required',
-            ],
-            'featured' => [
-                'required',
-            ],
-            'promoted' => [
-                'required',
-            ],
-            'email' => [
-                'required',
-                'unique:vendors',
-            ],
+            // 'status' => [
+            //     'required',
+            // ],
+            // 'featured' => [
+            //     'required',
+            // ],
+            // 'promoted' => [
+            //     'required',
+            // ],
+            // 'email' => [
+            //     'required',
+            //     'unique:vendors',
+            // ],
             'phone' => [
-                'required',
+                // 'required',
                 'integer',
                 'min:-2147483648',
                 'max:2147483647',
@@ -52,37 +52,37 @@ class StoreVendorRequest extends FormRequest
                 'max:225',
                 'required',
             ],
-            'rating' => [
-                'numeric',
-                'required',
-                'max:7',
-            ],
-            'payouts' => [
-                'required',
-                'integer',
-                'min:-2147483648',
-                'max:2147483647',
-            ],
-            'earning' => [
-                'string',
-                'max:225',
-                'nullable',
-            ],
-            'cod_balance' => [
-                'required',
-                'integer',
-                'min:-2147483648',
-                'max:2147483647',
-            ],
-            'oniline_payment' => [
-                'required',
-                'integer',
-                'min:-2147483648',
-                'max:2147483647',
-            ],
-            'image' => [
-                'required',
-            ],
+            // 'rating' => [
+            //     'numeric',
+            //     'required',
+            //     'max:7',
+            // ],
+            // 'payouts' => [
+            //     'required',
+            //     'integer',
+            //     'min:-2147483648',
+            //     'max:2147483647',
+            // ],
+            // 'earning' => [
+            //     'string',
+            //     'max:225',
+            //     'nullable',
+            // ],
+            // 'cod_balance' => [
+            //     'required',
+            //     'integer',
+            //     'min:-2147483648',
+            //     'max:2147483647',
+            // ],
+            // 'oniline_payment' => [
+            //     'required',
+            //     'integer',
+            //     'min:-2147483648',
+            //     'max:2147483647',
+            // ],
+            // 'image' => [
+            //     'required',
+            // ],
             'cid_expiry_data' => [
                 'required',
                 'date_format:' . config('panel.date_format'),
@@ -93,33 +93,33 @@ class StoreVendorRequest extends FormRequest
             'cnic_image' => [
                 'required',
             ],
-            'account_no' => [
-                'string',
-                'required',
-            ],
-            'opening_time' => [
-                'required',
-                'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
-            ],
-            'closing_time' => [
-                'required',
-                'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
-            ],
-            'business_type' => [
-                'required',
-            ],
-            'bank_name' => [
-                'string',
-                'required',
-            ],
-            'iban_no' => [
-                'string',
-                'required',
-            ],
-            'swift_code' => [
-                'string',
-                'required',
-            ],
+            // 'account_no' => [
+            //     'string',
+            //     'required',
+            // ],
+            // 'opening_time' => [
+            //     'required',
+            //     'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
+            // ],
+            // 'closing_time' => [
+            //     'required',
+            //     'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
+            // ],
+            // 'business_type' => [
+            //     'required',
+            // ],
+            // 'bank_name' => [
+            //     'string',
+            //     'required',
+            // ],
+            // 'iban_no' => [
+            //     'string',
+            //     'required',
+            // ],
+            // 'swift_code' => [
+            //     'string',
+            //     'required',
+            // ],
         ];
     }
 }
