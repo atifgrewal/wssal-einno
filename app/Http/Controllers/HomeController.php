@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // dd("sana");
         return view('home');
     }
 }

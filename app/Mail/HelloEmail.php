@@ -29,6 +29,6 @@ class HelloEmail extends Mailable
     public function build()
     {
         // dd("sana");
-        // return $this->view('');
+        return $this->view('twilioview');
     }
 }

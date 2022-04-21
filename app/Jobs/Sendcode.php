@@ -48,6 +48,7 @@ class Sendcode implements ShouldQueue
         // Mail::to('sanaramzan17225@gmail.com')->send($email);
         $template = "Please check in again to verify your presence ";
         $body = rand(70000,100);
+
         // dd($body);
         $message = $this->twilioClient->messages->create(
             '+9203164377598',

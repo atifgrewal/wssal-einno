@@ -52,5 +52,5 @@ Route::post('register', 'Api\\AuthController@register');
 Route::post('register_verify', 'Api\\AuthController@register_verify');
 Route::post('login', 'Api\\AuthController@login');
  Route::post('login_verify', 'Api\\AuthController@login_verify');
-// Route::get('sendSMS', 'Api\\AuthController@index');
+Route::post('sendSms', 'Api\\AuthController@index');
 // Route::
