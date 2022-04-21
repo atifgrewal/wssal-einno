@@ -17,13 +17,13 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-// use Illuminate\Foundation\Bus\Dispatchable;
-// use App\Http\Controllers\Api\Dispatchable;
+
+
 
 class AuthController extends Controller
  {
       use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
- private $twilioClient;
+      private $twilioClient;
 /**
  * Execute the console command.
  *
@@ -51,17 +51,7 @@ public function __construct()
         ]);
         $user=User::get();
         $this->user = $user;
-        // dd($this->user);
-        // $sid = config('services.twilio.account_sid');
-        // $token = config('services.twilio.auth_token');
-        // $this->twilioClient = new Client($sid, $token);
-        // dd("sana");
-
-
-
-
-
-        // dd("sa");
+           // dd("sa");
         $code = rand(70000,100);
 
         $user = User::create([
