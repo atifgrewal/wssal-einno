@@ -228,4 +228,14 @@ background-image: url(../images/arrow-left.svg)!important;
     table.dataTable tbody th, table.dataTable tbody td {
         padding: 1px 10px !important;
     }
-    
+    .c-sidebar-nav-icon {
+        margin-left: 0px !important;
+
+    }
+    .c-sidebar-nav-dropdown-items i{
+        font-size: 5px;
+        display: flex;
+    align-items: center;
+    justify-content: center;
+
+    }
