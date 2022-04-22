@@ -6,6 +6,7 @@ use App\Models\User;
 use App\jobs\Sendcode;
 use App\Models\Driver;
 use App\Models\Vendor;
+
 use Illuminate\Http\Request;
 use Illuminate\Bus\Queueable;
 use Twilio\TwiML\Voice\Client;
@@ -13,20 +14,30 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use SebastianBergmann\Type\Exception;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-// use Illuminate\Foundation\Bus\Dispatchable;
-// use App\Http\Controllers\Api\Dispatchable;
+
+
 
 class AuthController extends Controller
-{
-
+ {
+      use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+      private $twilioClient;
 /**
  * Execute the console command.
  *
  * @return void
  */
 
+public function __construct()
+{
+
+    $sid = config('services.twilio.account_sid');
+    $token = config('services.twilio.auth_token');
+    $this->twilioClient = new Client($sid, $token);
+    // dd($this->twilioClient);
+}
 
 
     public function register(Request $request )
@@ -40,17 +51,7 @@ class AuthController extends Controller
         ]);
         $user=User::get();
         $this->user = $user;
-        // dd($this->user);
-        // $sid = config('services.twilio.account_sid');
-        // $token = config('services.twilio.auth_token');
-        // $this->twilioClient = new Client($sid, $token);
-        // dd("sana");
-
-
-
-
-
-        // dd("sa");
+           // dd("sa");
         $code = rand(70000,100);
 
         $user = User::create([
@@ -62,27 +63,21 @@ class AuthController extends Controller
             // 'password' => 'null',
             'code' => $code
         ]);
-        // $template = "Please check in again to verify your presence ";
-        // $body = rand(70000,100);
-        // // dd($body);
-        // $message = $this->twilioClient->messages->create(
-        //     '+9203164377598',
-        //     [
-        //         'from' => '+18606504094',
-        //         'body' => $body
-        //     ]
-        // );
-        // Log::info($message->sid);
 
-
-
-
-
+        $message = $this->twilioClient->messages->create(
+            // dd($message),
+            '+9203164377598',
+            [
+                'from' => '+18606504094',
+                'body' => $code.'is your verification code'
+            ]
+        );
 
 
         $user->roles()->attach(2);
         $authToken = $user->createToken('auth-token')->plainTextToken;
         $user = User::latest('created_at')->first();
+        // dd($user);
         $user->remember_token = $authToken;
         $user->update();
 // dd($user);
@@ -135,6 +130,7 @@ class AuthController extends Controller
     $code = rand(70000,100);
 //    dd($code);
     $user = User::where('phone_no', $request->phone_no)->first();
+    if($user->email_verified_at !=null){
 // dd($user);
     if(isset($user->roles[1])){
         if($user->roles[1]->title=="Driver"){
@@ -160,9 +156,12 @@ class AuthController extends Controller
         }
 
     }
+}
+
     else{
-        return "Not Registered !    First Register your Account";
+        return "Not verified !    First verify your Account";
     }
+
 
 
     $authToken = $user->createToken('auth-token')->plainTextToken;
@@ -174,8 +173,14 @@ class AuthController extends Controller
             'Verify_code '=>$code1
         ]);
 
+
     }
     public function login_verify(Request $request){
+        $request->validate([
+            // 'email' => 'email|required',
+            // 'password' => 'required'
+            'code' =>'required',
+        ]);
         $user_id=0;
         $user_id= $request->bearerToken();
         $user = User::where('remember_token', $request->remember_token)->first();
@@ -184,24 +189,66 @@ class AuthController extends Controller
 
         $user_code = User::select('code')->where('code', $request->code)->first();
         //  dd($user_code);
+         if($user_code)
+         {
         if($user_code->code == $request->code){
             $user1=User::where('code',$user_code->code)->first();
             $user1->update(['remember_token'=> $request->remember_token]);
-            //   dd($user1);
-            return"Login Successfully";
+            $user1->update(['email_verified_at'=>now()]);
+
+        //  dd($user1);
+            // return"Login Successfully";
+            return response()->json([
+                'message' => "Login Successfully",
+                    'status '=>200
+                ]);
         }
         else{
+           return response()->json([
+                'message' => "Invalid Login ",
+                    'status '=>false
+                ]);
+        }
+    }
+        else{
 
-            return"code is invalid";
+            return"Code is invalid";
         }
 
 
 
         }
-        // public function send(){
-        //     $emailJob = new Sendcode();
-        //     dd("sana");
-        //     dispatch($emailJob);
-        // }
+        public function index(Request $request){
+        // $this->user = $user;
+        $sid = config('services.twilio.account_sid');
+        $token = config('services.twilio.auth_token');
+        $this->twilioClient = new Client($sid, $token);
+
+        $attributes = request()->validate([
+            'phone_no' => 'required',
+
+        ]);
+        $phone_no = $request->phone_no;
+        $body = rand(70000,100);
+        // dd($body);
+        $message = $this->twilioClient->messages->create(
+            // dd($message),
+            '+9203164377598',
+            [
+                'from' => '+18606504094',
+                'body' => $body
+            ]
+        );
+        Log::info($message->sid);
+
+        $exitCode = Artisan::call('Code:send-code', []);
+
+        return back()->with('message', 'Email Sent successfully!');
+
+        }
+
+
+
+
 
 }
