@@ -22,7 +22,18 @@ class OrderApiController extends Controller
 
     public function store(StoreOrderRequest $request)
     {
-        $order = Order::create($request->all());
+       $order = Order::create($request->all());
+    //    $order=Order::create([
+    //   'order_status'=>$request->order_status,
+
+    //   'order_type'=>$request->order_type,
+    //   'quantity'=>$request->quantity,
+    //   'payment'=>$request->payment,
+    //   'status'=>$request->status,
+
+    //    ]);
+      return($order);
+
         $order->products()->sync($request->input('products', []));
 
         return (new OrderResource($order))

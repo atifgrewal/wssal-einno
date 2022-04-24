@@ -2,6 +2,7 @@
 @section('content')
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"> --}}
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <div class="card">
     <div class="card-header">
         {{ trans('global.create') }} {{ trans('cruds.product.title_singular') }}
@@ -422,6 +423,7 @@ Dropzone.options.imageDropzone = {
 </script>
 <script>
     $('#tagsid').select2({
+
         // data: ["Piano", "Flute", "Guitar", "Drums", "Photography"],
         tags: true,
         maximumSelectionLength: 10,
@@ -430,6 +432,45 @@ Dropzone.options.imageDropzone = {
 
     });
 </script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#category_id').on('change',function(e) {
+         var cat_id = e.target.value;
+         $.ajax({
+            headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+               url:"{{ route('admin.dependentcat') }}",
+               type:"POST",
+            //    alert('sna'),
+               data: {
+                   cat_id: cat_id
+                },
+                // alert(data),
+
+               success:function (data) {
+                //    console.log(data);
+                //    alert(data[0]);
+                $('#sub_category_id').empty();
+
+                $.each(data,function(index,sub_category_id){
+                    // console.log(sub_category_id);
+                    $('#sub_category_id').append('<option value="'+sub_category_id.id+'">'+sub_category_id.name+'</option>');
+                })
+
+               }
+           })
+        });
+
+    });
+</script>
+
+
+
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

@@ -45,7 +45,8 @@ class Order extends Model
         'payment',
         'status',
         'st_date',
-
+        'order_status',
+        'order_type',
         'created_at',
         'updated_at',
         'deleted_at',

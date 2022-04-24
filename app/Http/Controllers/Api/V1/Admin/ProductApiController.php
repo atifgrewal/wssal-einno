@@ -27,9 +27,10 @@ class ProductApiController extends Controller
     public function store(StoreProductRequest $request)
     {
         $product = Product::create($request->all());
-        $product1=$request->name;
-        $product2=$request->value;
-        $data=$product1.$product2;
+
+        // $product1=$request->name;
+        // $product2=$request->value;
+        // $data=$product1.$product2;
 
     //   dd($data);
 
@@ -45,7 +46,7 @@ class ProductApiController extends Controller
             $product->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('image');
         }
 
-        return (new ProductResource($product,$data))
+        return (new ProductResource($product))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
     }

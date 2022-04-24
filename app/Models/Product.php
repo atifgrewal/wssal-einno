@@ -44,7 +44,11 @@ class Product extends Model implements HasMedia
 
     protected $fillable = [
         'name',
-        'price','discount','disc_type','start_time','end_time',
+        'price',
+        'discount',
+        'disc_type',
+        'start_time',
+        'end_time',
         'description',
         'category_id',
         'sub_category_id',
@@ -55,6 +59,7 @@ class Product extends Model implements HasMedia
         'sale_price',
         'sku',
         'qty',
+        // 'tags',
         'vendor',
         'created_at',
         'updated_at',
@@ -79,6 +84,7 @@ class Product extends Model implements HasMedia
 
     public function tags()
     {
+
         // dd($this->belongsToMany(ProductTag::class));
         return $this->belongsToMany(ProductTag::class);
     }

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\jobs\Sendcode;
 use App\Models\Driver;
-use App\Models\Vendor;
 
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Bus\Queueable;
 use Twilio\TwiML\Voice\Client;
@@ -22,22 +23,22 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class AuthController extends Controller
  {
-      use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-      private $twilioClient;
+    //   use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    //   private $twilioClient;
 /**
  * Execute the console command.
  *
  * @return void
  */
 
-public function __construct()
-{
+// public function __construct()
+// {
 
-    $sid = config('services.twilio.account_sid');
-    $token = config('services.twilio.auth_token');
-    $this->twilioClient = new Client($sid, $token);
-    // dd($this->twilioClient);
-}
+//     $sid = config('services.twilio.account_sid');
+//     $token = config('services.twilio.auth_token');
+//     $this->twilioClient = new Client($sid, $token);
+//     // dd($this->twilioClient);
+// }
 
 
     public function register(Request $request )
@@ -64,14 +65,14 @@ public function __construct()
             'code' => $code
         ]);
 
-        $message = $this->twilioClient->messages->create(
-            // dd($message),
-            '+9203164377598',
-            [
-                'from' => '+18606504094',
-                'body' => $code.'is your verification code'
-            ]
-        );
+        // $message = $this->twilioClient->messages->create(
+        //     // dd($message),
+        //     '+9203164377598',
+        //     [
+        //         'from' => '+18606504094',
+        //         'body' => $code.'is your verification code'
+        //     ]
+        // );
 
 
         $user->roles()->attach(2);
@@ -95,6 +96,12 @@ public function __construct()
 
     public function register_verify(Request $request)
     {
+        $request->validate([
+            // 'name' => 'required',
+            // 'email' => 'required|unique:users,email',
+            // 'password' => 'required|min:6',
+            'code' =>'required'
+        ]);
 
         $user_id=0;
        $user_id= $request->bearerToken();
@@ -103,18 +110,28 @@ public function __construct()
 
          if($user_code->code == $request->code){
             $user=User::where('code',$user_code->code)->first();
-            $user->update(['email_verified_at'=>now()]);
-
-            // return($user);
+            // $user->update(['email_verified_at'=>Carbon::now()->toDateTimeString()]);
+            $user->update(['email_verified_at'=>Carbon::now()]);
+            dd(Carbon::now());
+             return($user);
 
         //     return response()->json([
         //      'user_details'=>$user
 
         //    ]);
-        return  "Your account is verified";
+
+        return response()->json([
+            'message' => "Your account is verified",
+             'status'  => true,
+             'user'=>$user
+        ]);
          }
          else{
-            return"code is invalid";
+
+            return response()->json([
+                'message' => "code is invalid",
+                 'status'  => 422
+            ]);
          }
 
     }
@@ -159,7 +176,11 @@ public function __construct()
 }
 
     else{
-        return "Not verified !    First verify your Account";
+        return response()->json([
+            'message' =>  "Not verified !    First verify your Account",
+                'status '=>false
+            ]);
+
     }
 
 

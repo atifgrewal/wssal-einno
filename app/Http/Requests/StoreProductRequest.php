@@ -48,10 +48,10 @@ class StoreProductRequest extends FormRequest
             //     'required',
             //     'integer',
             // ],
-            'unit_id' => [
-                'required',
-                'integer',
-            ],
+            // 'unit_id' => [
+            //     'required',
+            //     'integer',
+            // ],
             'regular_price' => [
                 'numeric',
             ],
@@ -73,13 +73,13 @@ class StoreProductRequest extends FormRequest
                 'min:-2147483648',
                 'max:2147483647',
             ],
-            'vendor' => [
-                'required',
-                'nullable',
-                'integer',
-                'min:-2147483648',
-                'max:2147483647',
-            ],
+            // 'vendor' => [
+            //     'required',
+            //     'nullable',
+            //     'integer',
+            //     'min:-2147483648',
+            //     'max:2147483647',
+            // ],
             'image' => [
                 'array',
             ],

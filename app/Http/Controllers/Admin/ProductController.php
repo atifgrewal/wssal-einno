@@ -27,9 +27,10 @@ class ProductController extends Controller
     public function index()
     {
         abort_if(Gate::denies('product_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $products=Product::all();
-        // $products = Product:: with(['tags'])->get();
-
+        // $products=Product::all();
+        $products = Product:: with(['category', 'tags', 'attributes','attribute_values','sub_category', 'attribute_values',  'unit', 'media',])->get();
+        //  dd($products['category']);
+        // dd($products);
         // dd($products);
         //(['category', 'sub_category', 'tags', 'attributes', 'attribute_values',  'unit', 'media'])->get();
         return view('admin.products.index', compact('products'));
@@ -61,16 +62,20 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
 
-        //  dd($request->all());
+        //   dd($request->all());
         //  $product=new Product;
         $product=Product::create($request->all());
-        $product=Product::latest();
+
+        // dd($product->tags);
+        // $product=Product::latest();
 // dd($product);
 //
-        // $product->tags()->sync($request->input('tags', []));
-        // dd($request->all());
-        // $product->attributes()->sync($request->input('attributes', []));
-        // $product->attribute_values()->sync($request->input('attribute_values', []));
+       $product->tags()->sync($request->input('tags',[]));
+    //    ($request->input('tags', []));
+
+        // dd($user);
+        $product->attributes()->sync($request->input('attributes', []));
+        $product->attribute_values()->sync($request->input('attribute_values', []));
         if ($request->input('fetaured_image', false)) {
             $product->addMedia(storage_path('tmp/uploads/' . basename($request->input('fetaured_image'))))->toMediaCollection('fetaured_image');
         }
@@ -180,14 +185,18 @@ class ProductController extends Controller
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }
-    public function subCat(Request $request)
+    public function dependent(Request $request)
     {
-        dd($request->all());
+        // return($request);
         $parent_id = $request->cat_id;
+        //   return($parent_id);
 
-        $subcategories = Category::where('id',$parent_id)
-                              ->with('subcategories')
-                              ->get();
+
+        $subcategories = SubCat::where('parent_cateory_id',$parent_id)
+        ->get();
+
+         return($subcategories);
+
         return response()->json([
             'subcategories' => $subcategories
         ]);

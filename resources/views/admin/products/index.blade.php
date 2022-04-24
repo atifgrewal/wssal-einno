@@ -62,9 +62,9 @@
                         <th>
                             {{ trans('cruds.product.fields.attribute_value') }}
                         </th>
-                        <th>
+                        {{-- <th>
                             {{ trans('cruds.product.fields.variation') }}
-                        </th>
+                        </th> --}}
                         <th>
                             {{ trans('cruds.product.fields.unit') }}
                         </th>
@@ -83,15 +83,15 @@
                         <th>
                             {{ trans('cruds.product.fields.qty') }}
                         </th>
-                        <th>
+                        {{-- <th>
                             {{ trans('cruds.product.fields.fetaured_image') }}
-                        </th>
+                        </th> --}}
                         <th>
                             {{ trans('cruds.product.fields.vendor') }}
                         </th>
-                        <th>
+                        {{-- <th>
                             {{ trans('cruds.product.fields.image') }}
-                        </th>
+                        </th> --}}
                         <th>
                             &nbsp;
                         </th>
@@ -130,32 +130,35 @@
                                 {{ $product->description ?? '' }}
                             </td>
                             <td>
+                                {{-- {{dd($product->category)}}; --}}
                                 {{ $product->category->name ?? '' }}
                             </td>
                             <td>
                                 {{ $product->sub_category->name ?? '' }}
                             </td>
                             <td>
+                                {{-- {{dd($product->tags)}}; --}}
                                 @foreach($product->tags as $key => $item)
                                     <span class="badge badge-info">{{ $item->name }}</span>
                                 @endforeach
                             </td>
                             <td>
+                               {{-- {{dd()}} --}}
                                 @foreach($product->attributes as $key => $item)
                                     <span class="badge badge-info">{{ $item->name }}</span>
                                 @endforeach
                             </td>
                             <td>
                                 @foreach($product->attribute_values as $key => $item)
-                                    <span class="badge badge-info">{{ $item->value }}</span>
+                                <span class="badge badge-info">{{ $item->value }}</span>
                                 @endforeach
-                            </td>
-                            <td>
-                                {{ $product->variation->name ?? '' }}
                             </td>
                             <td>
                                 {{ $product->unit->name ?? '' }}
                             </td>
+                            {{-- <td>
+                                {{ $product->variation->name ?? '' }}
+                            </td> --}}
                             <td>
                                 {{ App\Models\Product::FEATURED_SELECT[$product->featured] ?? '' }}
                             </td>
@@ -171,23 +174,23 @@
                             <td>
                                 {{ $product->qty ?? '' }}
                             </td>
-                            <td>
+                            {{-- <td>
                                 @if($product->fetaured_image)
                                     <a href="{{ $product->fetaured_image->getUrl() }}" target="_blank">
                                         {{ trans('global.view_file') }}
                                     </a>
                                 @endif
-                            </td>
+                            </td> --}}
                             <td>
                                 {{ $product->vendor ?? '' }}
                             </td>
-                            <td>
+                            {{-- <td>
                                 @foreach($product->image as $key => $media)
                                     <a href="{{ $media->getUrl() }}" target="_blank">
                                         {{ trans('global.view_file') }}
                                     </a>
                                 @endforeach
-                            </td>
+                            </td> --}}
                             <td>
                                 @can('product_show')
                                     <a class="btn btn-xs btn-primary" href="{{ route('admin.products.show', $product->id) }}">
