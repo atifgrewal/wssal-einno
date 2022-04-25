@@ -200,6 +200,39 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.variation_helper') }}</span>
             </div> --}}
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                        <input type="text"  class="form-control" name="" value="" placeholder="color">
+                                
+                            </div>
+                            <div class="col-md-8">
+                        <input type="text" name="" value=""  class="form-control" placeholder="Enter choice values">
+                                
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    <div class="form-group">
+                    <div class="row">
+                            <div class="col-md-4">
+                                <h6>variant</h6>
+                        <input type="text"  class="form-control" name="" value="" placeholder="color">
+                                
+                            </div>
+                            <div class="col-md-8">
+                            <h6>variant Price</h6>
+
+                        <input type="text" name="" value=""  class="form-control" placeholder="Enter choice values">
+                                
+                            </div>
+                            
+                        </div>
+
+                        </div>
+
+             <!-- new fields -->
             <div class="form-group">
                 <label class="required" for="unit_id">{{ trans('cruds.product.fields.unit') }}</label>
                 <select class="form-control select2 {{ $errors->has('unit') ? 'is-invalid' : '' }}" name="unit_id" id="unit_id" required>
@@ -207,6 +240,9 @@
                         <option value="{{ $id }}" {{ old('unit_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                     @endforeach
                 </select>
+
+                   
+
                 @if($errors->has('unit'))
                     <div class="invalid-feedback">
                         {{ $errors->first('unit') }}
