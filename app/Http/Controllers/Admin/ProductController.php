@@ -201,4 +201,20 @@ class ProductController extends Controller
             'subcategories' => $subcategories
         ]);
     }
+    public function dependentatt(Request $request)
+    {
+        // return($request);
+        $parent_id = $request->cat_id;
+          return($parent_id);
+
+
+        $subcategories = Attributedetail::where('attributedetail_id',$parent_id)
+        ->get();
+
+         return($subcategories);
+
+        return response()->json([
+            'subcategories' => $subcategories
+        ]);
+    }
 }

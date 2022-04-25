@@ -37,7 +37,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('products/ckmedia', 'ProductController@storeCKEditorImages')->name('products.storeCKEditorImages');
     Route::resource('products', 'ProductController');
     Route::any('dependentcat','ProductController@dependent')->name('dependentcat');
-
+    Route::any('dependentattribute','ProductController@dependentatt')->name('dependentattribute');
     // Content Category
     Route::delete('content-categories/destroy', 'ContentCategoryController@massDestroy')->name('content-categories.massDestroy');
     Route::resource('content-categories', 'ContentCategoryController');

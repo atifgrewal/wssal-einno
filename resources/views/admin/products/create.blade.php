@@ -432,12 +432,24 @@ Dropzone.options.imageDropzone = {
 
     });
 </script>
+<script>
+    $('#attributes').select2({
+// alert('sana')
+        // data: ["Piano", "Flute", "Guitar", "Drums", "Photography"],
+        tags: true,
+        maximumSelectionLength: 10,
+        tokenSeparators: [',', ' '],
+        placeholder: "Select or type keywords",
+
+    });
+</script>
 
 <script type="text/javascript">
 
     $(document).ready(function () {
 
         $('#category_id').on('change',function(e) {
+            // alert('abc')
          var cat_id = e.target.value;
          $.ajax({
             headers: {
@@ -467,6 +479,45 @@ Dropzone.options.imageDropzone = {
 
     });
 </script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#attributes').on('change',function(e) {
+            var cat_id = e.target.value;
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                alert('sana');
+                url:"{{ route('admin.dependentattribute') }}",
+                type:"POST",
+                //    alert('sna'),
+                data: {
+                    cat_id: cat_id
+                },
+                // alert(data),
+
+                success:function (data) {
+                   console.log(data);
+                //    console.log(data);
+                //    alert(data[0]);
+                $('#attribute_values').empty();
+
+                $.each(data,function(index,attributes){
+                    // console.log(sub_category_id);
+                    $('#attribute_values').append('<option value="'+attribute_values.id+'">'+attribute_values.name+'</option>');
+                })
+
+               }
+           })
+        });
+
+    });
+</script>
+
+
 
 
 
