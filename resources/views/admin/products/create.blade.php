@@ -150,14 +150,15 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.tag_helper') }}</span>
             </div>
-            <div class="form-group">
-                <label for="attributes">{{ trans('cruds.product.fields.attribute') }}</label>
+            {{-- <div class="form-group">
+                <label for="attributes"  >{{ trans('cruds.product.fields.attribute') }}</label>
                 <div style="padding-bottom: 4px">
                     <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
                     <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                 </div>
-                <select class="form-control select2 {{ $errors->has('attributes') ? 'is-invalid' : '' }}" name="attributes[]" id="attributes" multiple>
-                    @foreach($attributes as $id => $attribute)
+                <select class="form-control select2 {{ $errors->has('attributes') ? 'is-invalid' : '' }}" name="attributes[]" id="attributesid" multiple>
+                   {{-- <option value="sana">san</option> --}}
+                    {{-- @foreach($attributes as $id => $attribute)
                         <option value="{{ $id }}" {{ in_array($id, old('attributes', [])) ? 'selected' : '' }}>{{ $attribute }}</option>
                     @endforeach
                 </select>
@@ -167,8 +168,8 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.attribute_helper') }}</span>
-            </div>
-            <div class="form-group">
+            </div> --}}
+            {{-- <div class="form-group">
                 <label class="required" for="attribute_values">{{ trans('cruds.product.fields.attribute_value') }}</label>
                 <div style="padding-bottom: 4px">
                     <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
@@ -177,14 +178,15 @@
                 <select class="form-control select2 {{ $errors->has('attribute_values') ? 'is-invalid' : '' }}" name="attribute_values[]" id="attribute_values" multiple required>
                     @foreach($attribute_values as $id => $attribute_value)
                         <option value="{{ $id }}" {{ in_array($id, old('attribute_values', [])) ? 'selected' : '' }}>{{ $attribute_value }}</option>
-                    @endforeach
+
+                        @endforeach
                 </select>
                 @if($errors->has('attribute_values'))
                     <div class="invalid-feedback">
                         {{ $errors->first('attribute_values') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.product.fields.attribute_value_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.product.fields.attribute_value_helper') }}</span> --}}
             </div>
             {{-- <div class="form-group">
                 <label class="required" for="variation_id">{{ trans('cruds.product.fields.variation') }}</label>
@@ -199,35 +201,87 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.variation_helper') }}</span>
-            </div> --}}
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-4">
-                        <input type="text"  class="form-control" name="" value="" placeholder="color">
-                                
+            </div>--}}
+
+
+
+            {{-- <div id="attribute_value"  style="display: none;">
+
+                <div class="form-group" >
+                    <div class="row">
+                        @foreach($attributes as $id => $attribute)
+                        <div class="col-md-4">
+                        <input type="text"  class="form-control" name="" value="" placeholder="">
+                        <option value="{{ $id }}" {{ in_array($id, old('attributes', [])) ? 'selected' : '' }}>{{ $attribute }}</option>
                             </div>
+
                             <div class="col-md-8">
-                        <input type="text" name="" value=""  class="form-control" placeholder="Enter choice values">
-                                
+                                <input type="text" name="" value=""  class="form-control" placeholder="Enter choice values">
+
                             </div>
-                            
+                            @endforeach
                         </div>
-                        
+
                     </div>
+                </div> --}}
+
+{{-- 2 --}}
+<div class="form-group">
+    <label for="attributes"  >{{ trans('cruds.product.fields.attribute') }}</label>
+    <div style="padding-bottom: 4px">
+        <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+        <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+    </div>
+<div class="form-group">
+    <select class="form-control select2 " id="milkoptions"multiple>
+    <option value="default-value">Select your option </option>
+    @foreach ($attributes as $id=>$item )
+    <option value="{{$item}}">{{$item}}</option>
+    @endforeach
+    </select>
+    </div>
+    @if($errors->has('attributes'))
+    <div class="invalid-feedback">
+        {{ $errors->first('attributes') }}
+    </div>
+@endif
+<span class="help-block">{{ trans('cruds.product.fields.attribute_helper') }}</span>
+</div>
+
+    <div id="milkfatrateoptions" style="display: none;">
+        @foreach ($attributes as $id=>$item1)
+        {{-- {{dd($item1)}}; --}}
+        @if($item1 == $item)
+        {{-- {{dd($item1)}} --}}
+    <div class="form-group col-md-4">
+        <input type="text" id="entry-date" class="form-control" value="{{$item1}}" name="" placeholder="">
+    </div>
+    <div class="form-group col-md-8">
+        <input type="text" id="entry-date" class="form-control" name="milk-fat" placeholder="Enter choice value">
+    </div>
+    @endif
+    @endforeach
+</div>
+
+
+{{-- end --}}
+
+
+
                     <div class="form-group">
                     <div class="row">
                             <div class="col-md-4">
                                 <h6>variant</h6>
                         <input type="text"  class="form-control" name="" value="" placeholder="color">
-                                
+
                             </div>
                             <div class="col-md-8">
                             <h6>variant Price</h6>
 
                         <input type="text" name="" value=""  class="form-control" placeholder="Enter choice values">
-                                
+
                             </div>
-                            
+
                         </div>
 
                         </div>
@@ -241,7 +295,7 @@
                     @endforeach
                 </select>
 
-                   
+
 
                 @if($errors->has('unit'))
                     <div class="invalid-feedback">
@@ -468,39 +522,29 @@ Dropzone.options.imageDropzone = {
 
     });
 </script>
-<script>
-    $('#attributes').select2({
-// alert('sana')
-        // data: ["Piano", "Flute", "Guitar", "Drums", "Photography"],
-        tags: true,
-        maximumSelectionLength: 10,
-        tokenSeparators: [',', ' '],
-        placeholder: "Select or type keywords",
 
-    });
-</script>
 
 <script type="text/javascript">
-
     $(document).ready(function () {
+    // alert('sana');
 
         $('#category_id').on('change',function(e) {
             // alert('abc')
-         var cat_id = e.target.value;
-         $.ajax({
-            headers: {
+            var cat_id = e.target.value;
+            $.ajax({
+             headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           },
-               url:"{{ route('admin.dependentcat') }}",
+          url:"{{ route('admin.dependentcat') }}",
                type:"POST",
             //    alert('sna'),
-               data: {
+            data: {
                    cat_id: cat_id
                 },
                 // alert(data),
 
                success:function (data) {
-                //    console.log(data);
+                   //    console.log(data);
                 //    alert(data[0]);
                 $('#sub_category_id').empty();
 
@@ -509,55 +553,53 @@ Dropzone.options.imageDropzone = {
                     $('#sub_category_id').append('<option value="'+sub_category_id.id+'">'+sub_category_id.name+'</option>');
                 })
 
-               }
+            }
            })
         });
 
+
     });
 </script>
+<script>
+    $('#milkoptions').select2({
+// alert('sana'),
+        // data: ["Piano", "Flute", "Guitar", "Drums", "Photography"],
+        tags: true,
+        maximumSelectionLength: 10,
+        tokenSeparators: [',', ' '],
+        placeholder: "Select or type keywords",
 
+    });
+    $('#milkoptions').on('change', function(){
+        if($(this).val()==="color")
+        alert('bnh0');
+        {
+            $("#milkfatrateoptions").show()
+
+
+        }
+    });
+    </script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
+            alert('sda');
+        $('#milkoptions').on('change', function(){
+        //  alert('hj');
 
-        $('#attributes').on('change',function(e) {
-            var cat_id = e.target.value;
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                alert('sana');
-                url:"{{ route('admin.dependentattribute') }}",
-                type:"POST",
-                //    alert('sna'),
-                data: {
-                    cat_id: cat_id
-                },
-                // alert(data),
+           if($(this).val()==="color"){
 
-                success:function (data) {
-                   console.log(data);
-                //    console.log(data);
-                //    alert(data[0]);
-                $('#attribute_values').empty();
-
-                $.each(data,function(index,attributes){
-                    // console.log(sub_category_id);
-                    $('#attribute_values').append('<option value="'+attribute_values.id+'">'+attribute_values.name+'</option>');
-                })
-
-               }
-           })
+               $("#milkfatrateoptions").show()
+           }
+          else if($(this).val()==="size"){
+               $("#milkfatrateoptions").show()
+           }
+            else{
+                $("#milkfatrateoptions").hide();
+            }
         });
 
     });
 </script>
-
-
-
-
-
-
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -568,7 +610,6 @@ Dropzone.options.imageDropzone = {
            crossorigin="anonymous"></script>
 
           <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
-
 
 
 
