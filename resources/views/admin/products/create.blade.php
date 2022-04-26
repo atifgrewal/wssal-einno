@@ -237,6 +237,7 @@
     <option value="default-value">Select your option </option>
     @foreach ($attributes as $id=>$item )
     <option value="{{$item}}">{{$item}}</option>
+    {{-- @count($item); --}}
     @endforeach
     </select>
     </div>
@@ -250,20 +251,16 @@
 
     <div id="milkfatrateoptions" style="display: none;">
 
-        @count($attributes);
-
         @foreach ($attributes as $id=>$item1)
-        {{-- {{dd($item1)}}; --}}
 
-        @for($item1=1,$item1<=@count($attributes);$item1++)
-        {{-- {{dd($item1)}} --}}
+        @for(  $i=0; $i =<count($item1);$i++)
         <div class="form-group col-md-4">
-        <input type="text" id="entry-date" class="form-control" value="{{$item}}" name="" placeholder="">
+        <input type="text" id="entry-date" class="form-control" value="{{$item1}}" name="" placeholder="">
     </div>
     <div class="form-group col-md-8">
         <input type="text" id="entry-date" class="form-control" name="milk-fat" placeholder="Enter choice value">
     </div>
-        @endfor
+     @endfor
     @endforeach
 </div>
 
