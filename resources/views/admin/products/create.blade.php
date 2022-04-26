@@ -251,15 +251,15 @@
     <div id="milkfatrateoptions" style="display: none;">
         @foreach ($attributes as $id=>$item1)
         {{-- {{dd($item1)}}; --}}
-        @if($item1 == $item)
+        {{-- @if($item1 == $item) --}}
         {{-- {{dd($item1)}} --}}
-    <div class="form-group col-md-4">
+        <div class="form-group col-md-4">
         <input type="text" id="entry-date" class="form-control" value="{{$item1}}" name="" placeholder="">
     </div>
     <div class="form-group col-md-8">
         <input type="text" id="entry-date" class="form-control" name="milk-fat" placeholder="Enter choice value">
     </div>
-    @endif
+    {{-- @endif --}}
     @endforeach
 </div>
 
