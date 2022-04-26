@@ -88,7 +88,7 @@
 
 
 
-{{-- end  --}}
+            {{-- end  --}}
 
             <div class="form-group">
                 <label for="description">{{ trans('cruds.product.fields.description') }}</label>
@@ -186,8 +186,8 @@
                         {{ $errors->first('attribute_values') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.product.fields.attribute_value_helper') }}</span> --}}
-            </div>
+                <span class="help-block">{{ trans('cruds.product.fields.attribute_value_helper') }}</span> 
+            </div>--}}
             {{-- <div class="form-group">
                 <label class="required" for="variation_id">{{ trans('cruds.product.fields.variation') }}</label>
                 <select class="form-control select2 {{ $errors->has('variation') ? 'is-invalid' : '' }}" name="variation_id" id="variation_id" required>
@@ -207,7 +207,7 @@
 
             {{-- <div id="attribute_value"  style="display: none;">
 
-                <div class="form-group" >
+                <div class="form-group">
                     <div class="row">
                         @foreach($attributes as $id => $attribute)
                         <div class="col-md-4">
@@ -225,66 +225,67 @@
                     </div>
                 </div> --}}
 
-{{-- 2 --}}
-<div class="form-group">
-    <label for="attributes"  >{{ trans('cruds.product.fields.attribute') }}</label>
-    <div style="padding-bottom: 4px">
-        <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
-        <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+    {{-- 2 --}}
+    <div class="form-group">
+        <label for="attributes">{{ trans('cruds.product.fields.attribute') }}</label>
+        <div style="padding-bottom: 4px">
+            <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+            <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+        </div>
+        
+    <div class="form-group">
+        <select class="form-control select2 " id="milkoptions"multiple>
+        <option value="default-value">Select your option </option>
+        @foreach ($attributes as $id=>$item )
+        <option value="{{$item}}">{{$item}}</option>
+        @endforeach
+        </select>
+        </div>
+        @if($errors->has('attributes'))
+        <div class="invalid-feedback">
+            {{ $errors->first('attributes') }}
+        </div>
+    @endif
+    <span class="help-block">{{ trans('cruds.product.fields.attribute_helper') }}</span>
     </div>
-<div class="form-group">
-    <select class="form-control select2 " id="milkoptions"multiple>
-    <option value="default-value">Select your option </option>
-    @foreach ($attributes as $id=>$item )
-    <option value="{{$item}}">{{$item}}</option>
-    @endforeach
-    </select>
-    </div>
-    @if($errors->has('attributes'))
-    <div class="invalid-feedback">
-        {{ $errors->first('attributes') }}
-    </div>
-@endif
-<span class="help-block">{{ trans('cruds.product.fields.attribute_helper') }}</span>
-</div>
 
-    <div id="milkfatrateoptions" style="display: none;">
-        @foreach ($attributes as $id=>$item1)
-        {{-- {{dd($item1)}}; --}}
-        {{-- @if($item1 == $item) --}}
-        {{-- {{dd($item1)}} --}}
-        <div class="form-group col-md-4">
-        <input type="text" id="entry-date" class="form-control" value="{{$item1}}" name="" placeholder="">
+        <div id="milkfatrateoptions" style="display: none;">
+            @foreach ($attributes as $id=>$item1)
+            {{-- {{dd($item1)}}; --}}
+            {{-- @if($item1 == $item) --}}
+            {{-- {{dd($item1)}} --}}
+            <div class="form-group col-md-4">
+            <input type="text" id="entry-date" class="form-control" value="{{$item1}}" name="" placeholder="">
+        </div>
+        <div class="form-group col-md-8">
+            <input type="text" id="entry-date" class="form-control" name="milk-fat" placeholder="Enter choice value">
+        </div>
+        {{-- @endif --}}
+        @endforeach
     </div>
-    <div class="form-group col-md-8">
-        <input type="text" id="entry-date" class="form-control" name="milk-fat" placeholder="Enter choice value">
-    </div>
-    {{-- @endif --}}
-    @endforeach
-</div>
 
 
-{{-- end --}}
+    {{-- end --}}
 
 
 
                     <div class="form-group">
-                    <div class="row">
+                        <div class="row">
                             <div class="col-md-4">
                                 <h6>variant</h6>
-                        <input type="text"  class="form-control" name="" value="" placeholder="color">
+                            <input type="text"  class="form-control" name="" value="" placeholder="color">
 
                             </div>
                             <div class="col-md-8">
                             <h6>variant Price</h6>
 
-                        <input type="text" name="" value=""  class="form-control" placeholder="Enter choice values">
+                            <input type="text" name="" value=""  class="form-control" placeholder="Enter choice values">
 
                             </div>
 
                         </div>
 
-                        </div>
+                    </div>
 
              <!-- new fields -->
             <div class="form-group">
