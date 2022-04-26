@@ -186,8 +186,8 @@
                         {{ $errors->first('attribute_values') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.product.fields.attribute_value_helper') }}</span> 
-            </div>--}}
+                <span class="help-block">{{ trans('cruds.product.fields.attribute_value_helper') }}</span> --}}
+            </div>
             {{-- <div class="form-group">
                 <label class="required" for="variation_id">{{ trans('cruds.product.fields.variation') }}</label>
                 <select class="form-control select2 {{ $errors->has('variation') ? 'is-invalid' : '' }}" name="variation_id" id="variation_id" required>
