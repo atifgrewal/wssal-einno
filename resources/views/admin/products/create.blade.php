@@ -225,44 +225,37 @@
                     </div>
                 </div> --}}
 
-    {{-- 2 --}}
-    <div class="form-group">
-        <label for="attributes">{{ trans('cruds.product.fields.attribute') }}</label>
-        <div style="padding-bottom: 4px">
-            <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
-            <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
-        </div>
-        
-    <div class="form-group">
-        <select class="form-control select2 " id="milkoptions"multiple>
-        <option value="default-value">Select your option </option>
-        @foreach ($attributes as $id=>$item )
-        <option value="{{$item}}">{{$item}}</option>
-        @endforeach
-        </select>
-        </div>
-        @if($errors->has('attributes'))
-        <div class="invalid-feedback">
-            {{ $errors->first('attributes') }}
-        </div>
-    @endif
-    <span class="help-block">{{ trans('cruds.product.fields.attribute_helper') }}</span>
+{{-- 2 --}}
+<div class="form-group">
+    <label for="attributes"  >{{ trans('cruds.product.fields.attribute') }}</label>
+    <div style="padding-bottom: 4px">
+        <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+        <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+    </div>
+<div class="form-group">
+    <select class="form-control select2 " id="milkoptions"multiple>
+    <option value="default-value">Select your option </option>
+    @foreach ($attributes as $id=>$item )
+    <option value="{{$item}}">{{$item}}</option>
+    {{-- @count($item); --}}
+    @endforeach
+    </select>
     </div>
 
-        <div id="milkfatrateoptions" style="display: none;">
-            @foreach ($attributes as $id=>$item1)
-            {{-- {{dd($item1)}}; --}}
-            {{-- @if($item1 == $item) --}}
-            {{-- {{dd($item1)}} --}}
-            <div class="form-group col-md-4">
-            <input type="text" id="entry-date" class="form-control" value="{{$item1}}" name="" placeholder="">
-        </div>
-        <div class="form-group col-md-8">
-            <input type="text" id="entry-date" class="form-control" name="milk-fat" placeholder="Enter choice value">
-        </div>
-        {{-- @endif --}}
-        @endforeach
+    <div id="milkfatrateoptions" style="display: none;">
+
+        @foreach ($attributes as $id=>$item1)
+
+        @for(  $i=0; $i =<count($item1);$i++)
+        <div class="form-group col-md-4">
+        <input type="text" id="entry-date" class="form-control" value="{{$item1}}" name="" placeholder="">
     </div>
+    <div class="form-group col-md-8">
+        <input type="text" id="entry-date" class="form-control" name="milk-fat" placeholder="Enter choice value">
+    </div>
+     @endfor
+    @endforeach
+</div>
 
 
     {{-- end --}}
