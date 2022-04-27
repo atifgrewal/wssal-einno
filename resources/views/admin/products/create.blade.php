@@ -246,14 +246,13 @@
 
         @foreach ($attributes as $id=>$item1)
 
-        @for(  $i=0; $i =<count($item1);$i++)
+      
         <div class="form-group col-md-4">
         <input type="text" id="entry-date" class="form-control" value="{{$item1}}" name="" placeholder="">
     </div>
     <div class="form-group col-md-8">
         <input type="text" id="entry-date" class="form-control" name="milk-fat" placeholder="Enter choice value">
     </div>
-     @endfor
     @endforeach
 </div>
 
